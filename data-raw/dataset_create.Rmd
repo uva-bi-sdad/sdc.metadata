@@ -1,37 +1,40 @@
 ---
 title: "Create or Update Dataset"
-author: "Aaron Schroeder"
-date: "11/18/2021"
+author: "Joanna Schroeder"
+date: "01/27/2021"
 output: html_document
 dataset:
   citation:
-      title: "Social Data Commons: your title here"
+      title: "Social Data Commons: Master Metadata"
       subtitle: ""
-      dsDescriptionValue: "Virginia Standards of Learning Test Scores collected by the Virginia Department of Education (VDOE)"
+      dsDescriptionValue: "Master metadata file for the Social Data Commons Measures"
       subject: "Social Sciences (Ex: Education, Politics, Sociology, Economics, Psychology)"
-      productionDate: "2021-11-17"
-      timePeriodCoveredStart: "2015-01-01"
-      timePeriodCoveredEnd: "2021-01-01"
-      dataSources:
-        - "ACS"
-        - "County Health Rankings"
+      productionDate: "2021-01-17"
+      timePeriodCoveredStart: ""
+      timePeriodCoveredEnd: ""
+      dataSources: ""
       author:
+        - authorName: "Schroeder, Joanna"
+          authorAffiliation: "Univeristy of Virginia"
+        - authorName: "Iserman, Micah"
+          authorAffiliation: "Univeristy of Virginia"
+        - authorName: "Linehan, Kathryn"
+          authorAffiliation: "Univeristy of Virginia"
         - authorName: "Schroeder, Aaron"
           authorAffiliation: "Univeristy of Virginia"
-        - authorName: "Charankevich, Hanna"
-          authorAffiliation: "Univeristy of Virginia"
-        - authorName: "Niagra, Bob"
-          authorAffiliation: "Univeristy of Waterloo"
       datasetContact:
-        - datasetContactEmail: "ads7fg@virginia.edu"
-          datasetContactName: "Schroeder, Aaron"
+        - datasetContactEmail: "js2mr@virginia.edu"
+          datasetContactName: "Schroeder, Joanna"
   geospatial:
     geographicCoverage:
       country: "United States"
-      state: "Virginia"
+      state: "Virginia, Maryland, District of Columbia"
     geographicUnit:
       - "State Health District"
       - "County"
+      - "Census Tract"
+      - "Census Block Group"
+      - "Neighborhood"
 ---
 
 ```{r setup, include=FALSE}
