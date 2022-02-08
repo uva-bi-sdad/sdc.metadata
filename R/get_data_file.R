@@ -1,12 +1,13 @@
 #' Get Data File (from Dataverse)
+#'
 #' Leaving outdir blank will provide the data directly.
 #' If outdir is not blank, the data file will be saved to the (already created) directory specified.
+#'
 #' @param file_name name of file to get from the dataverse dataset.
 #' @param outdir target directory if downloading the file.
 #' @import dataverse
 #' @import readr
 #' @import jsonlite
-#' @import here
 #' @export
 #' @examples
 #' \dontrun{get_data_file("file_name.csv.xz", "./outdir")}
@@ -14,7 +15,7 @@
 get_data_file <- function(file_name, outdir = "") {
 
   srv <- Sys.getenv("DATAVERSE_SERVER")
-  doi <- readLines(here::here("data/dataset_doi"))[1]
+  doi <- dataset_doi
 
   data_file_name <- file_name
   meta_file_name <- sub(".csv.xz", "_metadata.json", file_name, fixed = TRUE)

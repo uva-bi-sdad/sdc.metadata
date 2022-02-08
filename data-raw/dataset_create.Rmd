@@ -5,7 +5,7 @@ date: "11/18/2021"
 output: html_document
 dataset:
   citation:
-      title: "NEW Test dataset"
+      title: "Social Data Commons: your title here"
       subtitle: ""
       dsDescriptionValue: "Virginia Standards of Learning Test Scores collected by the Virginia Department of Education (VDOE)"
       subject: "Social Sciences (Ex: Education, Politics, Sociology, Economics, Psychology)"
@@ -221,14 +221,16 @@ if (file.exists(here::here("data/dataset_doi"))) {
     )
   
     ## Save dataset DOI to data
-    writeLines(ds_info$data$persistentId, here::here("data/dataset_doi"))
+    dataset_doi <- ds_info$data$persistentId
+    writeLines(dataset_doi, here::here("data/dataset_doi"))
+    save(dataset_doi, file = here::here("R/sysdata.rda"))
     
     ## Add WebApps team as curators to the dataset
 
     role = list(assignee = "&explicit/5710-SDAD_WebApps", role = "curator")  
     u = paste0("https://", Sys.getenv("DATAVERSE_SERVER"), 
                "/api/datasets/:persistentId/assignments?persistentId=", 
-               here::here("data/dataset_doi"))  
+               readLines(here::here("data/dataset_doi"))[1])  
     r <- httr::POST(u, httr::add_headers("X-Dataverse-key" = Sys.getenv("DATAVERSE_KEY"), 
                                          "Content-Type" = "application/json"), 
                     body = role, encode = 'json') 

@@ -1,7 +1,7 @@
 ---
 title: "Create Datafile"
-author: "Aaron Schroeder"
-date: "11/17/2021"
+author: "Joanna Schroeder"
+date: "01/27/2021"
 output: html_document
 ---
 
@@ -31,20 +31,22 @@ assign(dat_file_name, YOUR_DATASET_VAR_NAME)
 ## Write to compressed file
 
 ```{r compress}
-dat_file_path <- here::here(paste0("data/", dat_file_name, ".csv.xz"))
+#dat_file_path <- here::here(paste0("data/", dat_file_name, ".csv.xz"))
 
-readr::write_csv(get(dat_file_name),
-                 xzfile(dat_file_path, compression = 9))
+#readr::write_csv(get(dat_file_name),
+#                 xzfile(dat_file_path, compression = 9))
+
+write_json(measure_info, "~/git/dc.metadata/data/measure_info.json")
 ```
 
 ## Upload Files to Dataverse Dataset
 
 ```{r upload}
 dataverse::add_dataset_file(
-  file = dat_file_path,
+  file = "~/git/dc.metadata/data/measure_info.json",
   dataset = dataset_doi,
   key = Sys.getenv("DATAVERSE_KEY"),
   server   = Sys.getenv("DATAVERSE_SERVER"),
-  description = dat_file_name
+  description = "measure_info"
 )
 ```
