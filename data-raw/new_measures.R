@@ -437,3 +437,9 @@ measure_info <- measure_info[order(names(measure_info))]
 write_json(measure_info, "~/git/capital_region/docs/data/measure_info.json", pretty = TRUE, auto_unbox = TRUE)
 
 dc_working.va_013_cabg_sdad_2021_latino_east_african_gravity_model
+
+dc_population_characteristics.va_013_arl_2020_civic_association_demographics
+
+# dbListSchemas(con)
+# dbListTables(con, c("schema.name"))
+# dbListFields(con, c("schema.name", "table.name"))
