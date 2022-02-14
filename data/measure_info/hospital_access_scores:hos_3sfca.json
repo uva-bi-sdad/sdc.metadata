@@ -9,7 +9,7 @@
     "long_name": "Hospital access score (3-step floating catchment areas)",
     "short_description": "Index of hospital accessibility based on supply and demand of facilities",
     "long_description": "Hospital access score based on 3-step floating catchment areas. This method is an aggregation of facilities per population ratios weighted by distance or travel time in each catchment area (area within which a facility is accessible). Weights are defined for the demand for facilities (adult population).",
-    "statement": "The hospital accessibility score for {features.name} is  {value}",
+    "statement": "The hospital accessibility score for {features.name} is {value}.",
     "citations": [
       "lou04",
       "lou09",

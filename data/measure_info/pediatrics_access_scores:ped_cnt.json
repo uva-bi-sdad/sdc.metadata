@@ -9,7 +9,7 @@
     "long_name": "Pediatric care access by count",
     "short_description": "Count of pediatricians based on provider locations",
     "long_description": "Count of pediatricians based on provider locations. Address data was collected from WebMD's online Physician Directory.",
-    "statement": "There are {value} pediatricians in {features.name}",
+    "statement": "There are {value} pediatricians in {features.name}.",
     "sources": [
       {
         "name": "WebMD Physician Directory",

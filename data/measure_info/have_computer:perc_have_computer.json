@@ -9,7 +9,7 @@
     "long_name": "Percent of population with a computer",
     "short_description": "Percent of the population self-reported to have a computer at home",
     "long_description": "Percent of the population self-reported to have a computer at home. Based on American Community Survey ACS 2015/2019 5-year estimates.",
-    "statement": "{value} of the population in {features.name} have a computer",
+    "statement": "{value} of the population in {features.name} have a computer.",
     "sources": [
       {
         "name": "American Community Survey",

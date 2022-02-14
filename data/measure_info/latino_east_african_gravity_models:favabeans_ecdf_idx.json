@@ -9,7 +9,7 @@
     "long_name": "Fava bean access score (Empirical cumulative density function)",
     "short_description": "Fava bean access score by item availability using an empirical cumulative density function",
     "long_description": "Fava bean access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Fava beans is defined as an East African staple food by The Food Group",
-    "statement": "The fava bean access score in {features.name} is {value}",
+    "statement": "The fava bean access score in {features.name} is {value}.",
     "sources": [
       {
         "name": "Grocery Retailers with Online Presence",

@@ -9,7 +9,7 @@
     "long_name": "Civilian employment rate",
     "short_description": "Population self-reported as employed divided by total civilian workforce population.",
     "long_description": "Population self-reported as employed divided by total civilian workforce population. Based on American Community Survey Table B23025 ACS 2015/2019 5-year estimates.",
-    "statement": "The employment rate in {features.name} is {value}",
+    "statement": "The employment rate in {features.name} is {value}.",
     "sources": [
       {
         "name": "American Community Survey",

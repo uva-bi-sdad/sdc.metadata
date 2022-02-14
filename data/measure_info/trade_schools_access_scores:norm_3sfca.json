@@ -9,7 +9,7 @@
     "long_name": "Trade school access score (3-step floating catchment areas)",
     "short_description": "Index of trade school accessibility based on supply and demand of providers",
     "long_description": "Trade school access score based on 3-step floating catchment areas. This method is an aggregation of trade school capacity per population ratios weighted by distance or travel time in each catchment area (area within which an institution is accessible). Weights are defined for the demand for trade schools (whole population in an area served by the institution) and supply is the total number of students enrolled in a year (undergraduate).",
-    "statement": "The trade school accessibility score for {features.name} is  {value}",
+    "statement": "The trade school accessibility score for {features.name} is {value}.",
     "citations": [
       "lou04",
       "lou09",

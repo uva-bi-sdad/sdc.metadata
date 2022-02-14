@@ -4,12 +4,12 @@
     "measure_table": "dc_digital_communications.va_hdcttr_ookla_2019_2021_download_speeds",
     "full_name": "download_speeds:download",
     "measure": "download",
-    "type": "float",
+    "type": "internet speed",
     "short_name": "Average download speed",
     "long_name": "Average download speed (MB/s)",
     "short_description": "Average download speed for internet connection in MB/s",
     "long_description": "The average download speed for internet users' connections who performed a speed check using Ookla. Speeds are reported in MB/s. A speed of 100 MB/s is considered adequate for school work, video calling etc.",
-    "statement": "The average download speed for internet connections in {features.name} is {value} MB/s",
+    "statement": "The average download speed for internet connections in {features.name} is {value}.",
     "sources": [
       {
         "name": "Ookla",

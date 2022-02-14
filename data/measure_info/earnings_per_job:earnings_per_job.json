@@ -4,12 +4,12 @@
     "measure_table": "earnings_per_job",
     "full_name": "earnings_per_job:earnings_per_job",
     "measure": "earnings_per_job",
-    "type": "ratio",
+    "type": "dollar",
     "short_name": "Earnings per job",
     "long_name": "Earnings per job",
     "short_description": "Average of earnings per job.",
     "long_description": "Earnings per job is calculated based on the GDP and Personal Income table from the Bureau of Economic Analysis.",
-    "statement": "Earnings per job in {features.name} is ${value}",
+    "statement": "Earnings per job in {features.name} is {value}.",
     "sources": [
       {
         "name": "Bureau of Economic Analysis",

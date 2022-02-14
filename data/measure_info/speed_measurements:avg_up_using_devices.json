@@ -7,8 +7,8 @@
     "short_name": "Average Upload Speed",
     "long_name": "Average Upload Speed",
     "short_description": "Average upload speed weighted by number of devices.",
-    "statement": "The average upload speed is {value} MB/s in {features.name}.",
-    "type": "average",
+    "statement": "The average upload speed is {value} in {features.name}.",
+    "type": "internet speed",
     "sources": [
       {
         "name": "Ookla",

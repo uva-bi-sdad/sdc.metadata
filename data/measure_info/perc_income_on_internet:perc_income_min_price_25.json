@@ -9,7 +9,7 @@
     "long_name": "The minimum price for good internet (25 MB/s upload) as a percent of average income",
     "short_description": "The minimum price for good internet (25 MB/s upload) as a percent of average income",
     "long_description": "The minimum price for good internet (25 MB/s upload) as a percent of average income.",
-    "statement": "Good internet costs {value} of the average income in {features.name}",
+    "statement": "Good internet costs {value} of the average income in {features.name}.",
     "sources": [
       {
         "name": "American Community Survey",

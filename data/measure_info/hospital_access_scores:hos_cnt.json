@@ -9,7 +9,7 @@
     "long_name": "Access to hospitals by count",
     "short_description": "Count of hospitals based on facility locations",
     "long_description": "Count of hospitals based on facility locations. Location data was collected from the Homeland Infrastructure Foundation-Level Data (HIFLD) repository.",
-    "statement": "There are {value} hospitals in {features.name}",
+    "statement": "There are {value} hospitals in {features.name}.",
     "sources": [
       {
         "name": "Homeland Infrastructure Foundation-Level Data (HIFLD)",
