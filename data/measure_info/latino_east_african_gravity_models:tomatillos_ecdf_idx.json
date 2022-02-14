@@ -1,0 +1,20 @@
+{
+  "latino_east_african_gravity_models:tomatillos_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:tomatillos_ecdf_idx",
+    "measure": "tomatillos_ecdf_idx",
+    "type": "float",
+    "short_name": "Tomatillo access score",
+    "long_name": "Tomatillo access score (Empirical cumulative density function)",
+    "short_description": "Tomatillo access score by item availability using an empirical cumulative density function",
+    "long_description": "Tomatillo access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Tomatillo is defined as a Latino staple food by The Food Group",
+    "statement": "The tomatillo access score in {features.name} is {value}",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  }
+}

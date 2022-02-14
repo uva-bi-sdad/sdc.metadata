@@ -1,0 +1,21 @@
+{
+  "have_computer:perc_have_computer": {
+    "category": "Broadband",
+    "measure_table": "dc_digital_communications.va_hdcttr_acs5_2019_have_computer",
+    "full_name": "have_computer:perc_have_computer",
+    "measure": "perc_have_computer",
+    "type": "percent",
+    "short_name": "Population with a computer",
+    "long_name": "Percent of population with a computer",
+    "short_description": "Percent of the population self-reported to have a computer at home",
+    "long_description": "Percent of the population self-reported to have a computer at home. Based on American Community Survey ACS 2015/2019 5-year estimates.",
+    "statement": "{value} of the population in {features.name} have a computer",
+    "sources": [
+      {
+        "name": "American Community Survey",
+        "date_accessed": 2021,
+        "url": "https://www.census.gov/programs-surveys/acs.html"
+      }
+    ]
+  }
+}

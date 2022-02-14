@@ -1,4 +1,4 @@
-measure_table:measure_name <- list(
+measure <- list(
   "category" = "",
   "measure_table" = "",
   "full_name" = "",

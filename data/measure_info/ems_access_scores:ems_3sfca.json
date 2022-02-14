@@ -1,0 +1,27 @@
+{
+  "ems_access_scores:ems_3sfca": {
+    "category": "Health",
+    "measure_table": "dc_health_behavior_diet.va_hdcttr_sdad_2021_ems_access_scores",
+    "full_name": "ems_access_scores:ems_3sfca",
+    "measure": "ems_3sfca",
+    "type": "index",
+    "short_name": "Emergency medical services access score",
+    "long_name": "Emergency medical services access score (3-step floating catchment areas)",
+    "short_description": "Index of emergency medical services accessibility based on supply and demand of facilities",
+    "long_description": "Emergency medical services access score based on 3-step floating catchment areas. This method is an aggregation of facilities per population ratios weighted by distance or travel time in each catchment area (area within which a facility is accessible). Weights are defined for the demand for facilities (adult population).",
+    "statement": "The emergency medical services accessibility score for {features.name} is {value}",
+    "citations": [
+      "lou04",
+      "lou09",
+      "lou03",
+      "saxon20"
+    ],
+    "sources": [
+      {
+        "name": "Homeland Infrastructure Foundation-Level Data (HIFLD)",
+        "date_accessed": 2021,
+        "url": "https://hifld-geoplatform.opendata.arcgis.com/"
+      }
+    ]
+  }
+}

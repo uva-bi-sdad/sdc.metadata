@@ -1,0 +1,27 @@
+{
+  "dentists_access_scores:dent_e2sfca": {
+    "category": "Health",
+    "measure_table": "dc_health_behavior_diet.dmv_bg_sdad_2021_dentists_access_scores",
+    "full_name": "dentists_access_scores:dent_e2sfca",
+    "measure": "dent_e2sfca",
+    "type": "index",
+    "short_name": "Dental care access score",
+    "long_name": "Dental care access score (2 step-enhanced floating catchment areas)",
+    "short_description": "Index of dental care accessibility based on supply and demand of providers",
+    "long_description": "Dental care access score based on 2-step enhanced floating catchment areas. This method is an aggregation of dentists per population ratios weighted by distance or travel time in each catchment area (area within which a provider is accessible). Weights are defined for the demand for dentists (population served by dentists). Provider address data was collected from WebMD's online Physician Directory.",
+    "statement": "The dental care access score for {features.name} is {value}",
+    "citations": [
+      "lou04",
+      "lou09",
+      "lou03",
+      "saxon20"
+    ],
+    "sources": [
+      {
+        "name": "SafeGraph Core",
+        "date_accessed": 2021,
+        "url": "https://www.safegraph.com/products/core"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "pct_pop_cable_fiber_dsl:perc_w_cable_fiber_DSL": {
+    "category": "Broadband",
+    "measure_table": "dc_digital_communications.va_hdcttr_acs_2017_2019_pct_pop_cable_fiber_dsl",
+    "full_name": "pct_pop_cable_fiber_dsl:perc_w_cable_fiber_DSL",
+    "measure": "perc_w_cable_fiber_DSL",
+    "type": "percent",
+    "short_name": "Population with cable, fiber optic, or DSL",
+    "long_name": "Percent of population with a high speed internet service (cable, fiber optic, or DSL)",
+    "short_description": "Percent of population self-reported to have a high speed internet service (cable, fiber optic, or DSL)",
+    "long_description": "Percent of population self-reported to have a high speed internet service. A high speed internet service is defined as a cable, fiber optic, or DSL internet connection. Based on American Community Survey ACS 2015/2019 5-year estimates.",
+    "statement": "{value} of the population in {features.name} has a cable fiber or DSL internet connection",
+    "sources": [
+      {
+        "name": "American Community Survey",
+        "date_accessed": 2021,
+        "url": "https://www.census.gov/programs-surveys/acs.html"
+      }
+    ]
+  }
+}

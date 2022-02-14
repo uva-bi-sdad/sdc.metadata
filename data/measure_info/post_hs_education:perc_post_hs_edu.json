@@ -1,0 +1,21 @@
+{
+  "post_hs_education:perc_post_hs_edu": {
+    "category": "Education",
+    "measure_table": "dc_education_training.va_hdcttr_acs_2015_2019_post_hs_education",
+    "full_name": "post_hs_education:perc_post_hs_edu",
+    "measure": "perc_post_hs_edu",
+    "type": "percent",
+    "short_name": "Population with post-high school education",
+    "long_name": "Percent  of population with post-high school education",
+    "short_description": "Percent of the population self-reported to have post-high school level degree",
+    "long_description": "Percent of the population self-reported to have post-high school level degree. Based on American Community Survey Table B15003 in ACS 2015/2019 5-year estimates.",
+    "statement": "{value} of the population in {features.name} have a post-high school education",
+    "sources": [
+      {
+        "name": "American Community Survey",
+        "date_accessed": 2021,
+        "url": "https://www.census.gov/data/developers/data-sets/acs-5year.html"
+      }
+    ]
+  }
+}
