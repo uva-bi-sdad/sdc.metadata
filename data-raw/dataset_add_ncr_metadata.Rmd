@@ -20,20 +20,21 @@ dataset_doi <- readLines(here::here("data/dataset_doi"))[1]
 measures_info.json: build_measure_info.R
 
 ```{r data}
-
 ```
 
 ## Write to compressed file
 
 ```{r compress}
-#write_json(measure_info, "~/git/dc.metadata/data/measure_info.json")
-all_geos_file_name = "measure_info"
+#write_json(ncr_measure_info, "~/git/dc.metadata/data/ncr_measure_info.json")
+all_geos_file_name = "ncr_measure_info"
 dat_file_path = here::here(paste0("data/", all_geos_file_name, ".json"))
 ```
 
 ## Upload Files to Dataverse Dataset
 
 ```{r upload}
+# check if file already exists
+
 file_names <- dataverse::dataset_files(
     dataset = dataset_doi,
     version = ":latest",

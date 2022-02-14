@@ -9,7 +9,7 @@
     "long_name": "The minimum price for fast internet (100 MB/s upload) as a percent of average income",
     "short_description": "The minimum price for fast internet (100 MB/s upload) as a percent of average income",
     "long_description": "The minimum price for fast internet (100 MB/s upload) as a percent of average income.",
-    "statement": "Fast internet costs {value} of the average income in {features.name}",
+    "statement": "Fast internet costs {value} of the average income in {features.name}.",
     "sources": [
       {
         "name": "American Community Survey",

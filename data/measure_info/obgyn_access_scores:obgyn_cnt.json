@@ -9,7 +9,7 @@
     "long_name": "OBGYN care access by count",
     "short_description": "Count of OBGYNs based on provider locations",
     "long_description": "Count of OBGYN care providers based on provider locations. Address data was collected from WebMD's online Physician Directory.",
-    "statement": "There are {value} OBGYNs in {features.name}",
+    "statement": "There are {value} OBGYNs in {features.name}.",
     "sources": [
       {
         "name": "WebMD Physician Directory",

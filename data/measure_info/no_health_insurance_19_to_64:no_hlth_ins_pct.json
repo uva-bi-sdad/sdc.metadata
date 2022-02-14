@@ -9,7 +9,7 @@
     "long_name": "Percent of population without health insurance",
     "short_description": "Percent of the population (ages 16-64) self-reported to not be currently covered by any type of health insurance or health coverage plan",
     "long_description": "Percent of the population self-reported to not be currently covered by any type of health insurance or health coverage plan. Based on American Community Survey Tables B18135 and C27001I in ACS 2015/2019 5-year estimates.",
-    "statement": "{value} of the population has no health insurance in  {features.name}",
+    "statement": "{value} of the population has no health insurance in {features.name}.",
     "sources": [
       {
         "name": "American Community Survey",

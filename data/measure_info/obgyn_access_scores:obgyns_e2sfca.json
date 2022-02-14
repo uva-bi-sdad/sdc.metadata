@@ -9,7 +9,7 @@
     "long_name": "OBGYN care access score (2 step-enhanced floating catchment areas)",
     "short_description": "Index of OBGYN care accessibility based on supply and demand of providers",
     "long_description": "OBGYN care access score based on 2-step enhanced floating catchment areas. This method is an aggregation of OBGYNs per population ratios weighted by distance or travel time in each catchment area (area within which a provider is accessible). Weights are defined for the demand for OBGYNs (population served by OBGYNs). Provider address data was collected from WebMD's online physician directory.",
-    "statement": "The OBGYN access score for {features.name} is {value}",
+    "statement": "The OBGYN access score for {features.name} is {value}.",
     "citations": [
       "lou04",
       "lou09",

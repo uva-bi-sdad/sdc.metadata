@@ -9,7 +9,7 @@
     "long_name": "Access to day care by count",
     "short_description": "Count of day care capacity (seats) based on provider locations",
     "long_description": "Count of day care capacity (seats) based on provider locations. Address and capacity data was collected from Virginia Department of Social Services day care search tool.",
-    "statement": "There are {value} daycares in {features.name}",
+    "statement": "There are {value} daycares in {features.name}.",
     "sources": [
       {
         "name": "Virginia Department of Social Services",

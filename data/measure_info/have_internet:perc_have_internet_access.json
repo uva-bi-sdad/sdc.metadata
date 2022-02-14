@@ -9,7 +9,7 @@
     "long_name": "Percent of population with internet access",
     "short_description": "Percent of the population self-reported to have internet access at home",
     "long_description": "Percent of the population self-reported to have internet access at home. Based on American Community Survey ACS 2015/2019 5-year estimates.",
-    "statement": "{value} of the population in {features.name} have internet access",
+    "statement": "{value} of the population in {features.name} have internet access.",
     "sources": [
       {
         "name": "American Community Survey",

@@ -2,6 +2,8 @@ library(jsonlite)
 
 ncr_measure_info <- read_json("~/ncr_measure_info.json")
 va_measure_info <- read_json("~/va_measure_info.json")
+ncr_names <- names(ncr_measure_info)
+va_names <- names(va_measure_info)
 
 test <- va_measure_info[1:2]
 names(ncr_measure_info) <- stringr::str_trim(names(ncr_measure_info))
@@ -13,18 +15,27 @@ for(i in some_names) {
 
 file_names <- list.files("data/measure_info/")
 library(stringr)
-measure_names < str_extract(file_names, "^.*(?=(\\.json))")
-
+measure_names <- str_extract(file_names, "^.*(?=(\\.json))")
+library(jsonlite)
+measure_name <- NULL
+measure <- NULL
 measure_info <- NULL
-foreach(file_names[i]) %do% {
-  measure_name < str_extract(file, "^.*(?=(\\.json))")
-  measure <- read_json(paste0("data/measure_info/", file))
+for(i in 1:80){
+  measure_name < str_extract(file_names[i], "^.*(?=(\\.json))")
+  measure <- read_json(paste0("data/measure_info/", file_names[i]))
   measure_info <- measure_info %>%
-    append(list(measure_name = `measure`))
+    append(measure)
+  measure_info
 }
 
 # select measure names for file
 
 measure_info <- measure_info[order(names(measure_info))]
 
-write_json(measure_info, "~/git/capital_region/docs/data/measure_info.json", pretty = TRUE, auto_unbox = TRUE)
+write_json(measure_info, "data/measure_info.json", pretty = TRUE, auto_unbox = TRUE)
+
+ncr_measure_info <- measure_info[ncr_names]
+vdh_measure_info <- measure_info[va_names]
+
+write_json(ncr_measure_info, "data/ncr_measure_info.json", pretty = TRUE, auto_unbox = TRUE)
+write_json(vdh_measure_info, "data/vdh_measure_info.json", pretty = TRUE, auto_unbox = TRUE)

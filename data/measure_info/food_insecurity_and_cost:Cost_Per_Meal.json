@@ -4,12 +4,12 @@
     "measure_table": "food_insecurity_and_cost",
     "full_name": "food_insecurity_and_cost:Cost_Per_Meal",
     "measure": "Cost_Per_Meal",
-    "type": "float",
+    "type": "dollar",
     "short_name": "Average meal cost",
     "long_name": "Average meal cost",
     "short_description": "The average weekly dollar amount food-secure individuals report spending on food.",
     "long_description": "The average weekly dollar amount food-secure individuals report spending on food, as estimated by the Current Population Survey, divided by 21 (assuming three meals a day, seven days a week). This amount has been adjusted to reflect local food prices and relevant taxes.",
-    "statement": "The average meal cost in {features.name} is {value}",
+    "statement": "The average meal cost in {features.name} is {value}.",
     "sources": [
       {
         "name": "Feeding America",

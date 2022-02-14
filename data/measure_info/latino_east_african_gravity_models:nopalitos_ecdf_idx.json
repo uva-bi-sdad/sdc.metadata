@@ -9,7 +9,7 @@
     "long_name": "Nopalito access score (Empirical cumulative density function)",
     "short_description": "Nopalito access score by item availability using an empirical cumulative density function.",
     "long_description": "Nopalito access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Nopalito is defined as a Latino staple food by The Food Group",
-    "statement": "The nopalito access score in {features.name} is {value}",
+    "statement": "The nopalito access score in {features.name} is {value}.",
     "sources": [
       {
         "name": "Grocery Retailers with Online Presence",

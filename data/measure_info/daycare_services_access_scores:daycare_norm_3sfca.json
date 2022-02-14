@@ -9,7 +9,7 @@
     "long_name": "Day care access score (3-step floating catchment area)",
     "short_description": "Index of day care accessibility based on supply of and demand for providers",
     "long_description": "Day care access score based on 2-step enhanced floating catchment areas. This method is an aggregation of day care facilities per population ratios weighted by distance or travel time in each catchment area (area within which a provider is accessible). Provider address data was collected from Virginia Department of Social Services day care search tool. The demand for day care services is the population 0-12 years old and the supply is the capacity of day cares (number of seats).",
-    "statement": "The daycare accessibility score for {features.name} is {value}",
+    "statement": "The daycare accessibility score for {features.name} is {value}.",
     "citations": [
       "lou04",
       "lou09",

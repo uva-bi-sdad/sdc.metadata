@@ -9,7 +9,7 @@
     "long_name": "Percent of the population with poor physical health",
     "short_description": "Percent of the population self-reporting poor physical health",
     "long_description": "Percent of the population self-reporting poor physical health in over 14 days of the previous month. Based on the Virginia Behavioral Risk Factor Surveillance Survey.",
-    "statement": "{value} of the population in {features.name} report poor physical health",
+    "statement": "{value} of the population in {features.name} reports poor physical health.",
     "sources": [
       {
         "name": "Virginia Behavioral Risk Factor Surveillance System",

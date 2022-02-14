@@ -9,7 +9,7 @@
     "long_name": "The national average price for internet as a percent of average income",
     "short_description": "The national average price for internet ($64) as a percent of average income",
     "long_description": "The national average price for internet ($64) as a percent of average income.",
-    "statement": "The national average internet package costs {value} of the average income in {features.name}",
+    "statement": "The national average internet package costs {value} of the average income in {features.name}.",
     "sources": [
       {
         "name": "American Community Survey",

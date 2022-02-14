@@ -9,7 +9,7 @@
     "long_name": "Percent  of population with post-high school education",
     "short_description": "Percent of the population self-reported to have post-high school level degree",
     "long_description": "Percent of the population self-reported to have post-high school level degree. Based on American Community Survey Table B15003 in ACS 2015/2019 5-year estimates.",
-    "statement": "{value} of the population in {features.name} have a post-high school education",
+    "statement": "{value} of the population in {features.name} has a post-high school education.",
     "sources": [
       {
         "name": "American Community Survey",

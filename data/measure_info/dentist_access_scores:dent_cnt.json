@@ -9,7 +9,7 @@
     "long_name": "Dental care access by count",
     "short_description": "Count of dentists based on provider locations",
     "long_description": "Count of dentists based on provider locations. Address data was collected from WebMD's online Physician Directory.",
-    "statement": "There are {value} dentists in {features.name}",
+    "statement": "There are {value} dentists in {features.name}.",
     "sources": [
       {
         "name": "SafeGraph Core",

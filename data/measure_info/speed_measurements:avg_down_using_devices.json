@@ -7,8 +7,8 @@
     "short_name": "Average Download Speed",
     "long_name": "Average Download Speed",
     "short_description": "Average download speed weighted by number of devices.",
-    "statement": "The average download speed is {value} MB/s in {features.name}.",
-    "type": "average",
+    "statement": "The average download speed is {value} in {features.name}.",
+    "type": "internet speed",
     "sources": [
       {
         "name": "Ookla",
