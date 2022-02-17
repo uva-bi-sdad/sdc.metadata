@@ -20,10 +20,11 @@ dataset_doi <- readLines(here::here("data/dataset_doi"))[1]
 dc_geographies.ncr_cttrbg_tiger_2010_2020_geo_name: census_geography_names.Rmd
 dc_geographies.va_013_arl_2020_civic_assoc_geo_names: civic_assoc_and_hlth_dist_names.R
 dc_geographies.va_hd_vdh_2021_health_district_geo_names: civic_assoc_and_hlth_dist_names.R
+dc_geographies.ncr_sd_nces_2021_school_district_names
 
 ```{r data}
 # Ex database_table_name: "va_hd_vdoe_2019_2021_3rd_grade_mean_median_read_score"
-table_names = c("ncr_cttrbg_tiger_2010_2020_geo_names", "va_013_arl_2020_civic_assoc_geo_names", "va_hd_vdh_2021_health_district_geo_names") 
+table_names = c("ncr_cttrbg_tiger_2010_2020_geo_names", "va_013_arl_2020_civic_assoc_geo_names", "va_hd_vdh_2021_health_district_geo_names", "ncr_sd_nces_2021_school_district_names") 
     
 con <- get_db_conn()
 
