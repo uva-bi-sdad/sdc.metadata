@@ -56,9 +56,9 @@ if (length(file_names) > 0)
 }
 
 
-if (paste0(all_geos_file_name, ".csv.xz") %in% names) # file already exists, so we update it
+if (paste0(all_geos_file_name, ".json") %in% names) # file already exists, so we update it
 {
-   idx = which(names == paste0(all_geos_file_name, ".csv.xz"))
+   idx = which(names == paste0(all_geos_file_name, ".json"))
   
    dataverse::update_dataset_file(
      file = dat_file_path,
