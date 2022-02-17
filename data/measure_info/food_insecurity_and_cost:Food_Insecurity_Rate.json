@@ -9,7 +9,7 @@
     "long_name": "Food insecurity rate",
     "short_description": "Food insecurity refers to USDA's measure of lack of access, at times, to enough food for an active, healthy life for all household members and limited or uncertain availability of nutritionally adequate foods.",
     "long_description": "Food insecurity refers to USDA's measure of lack of access, at times, to enough food for an active, healthy life for all household members and limited or uncertain availability of nutritionally adequate foods. Food-insecure households are not necessarily food insecure all the time. Food insecurity may reflect a household's need to make trade-offs between important basic needs, such as housing or medical bills, and purchasing nutritionally adequate foods.",
-    "statement": "The food insecurity rate in {features.name} is {value}.",
+    "statement": "{value} of the population in {features.name} are food insecure.",
     "sources": [
       {
         "name": "Feeding America",

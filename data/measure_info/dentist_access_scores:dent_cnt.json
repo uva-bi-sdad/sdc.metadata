@@ -12,9 +12,9 @@
     "statement": "There are {value} dentists in {features.name}.",
     "sources": [
       {
-        "name": "SafeGraph Core",
+        "name": "WebMD Physician Directory",
         "date_accessed": 2021,
-        "url": "https://www.safegraph.com/products/core"
+        "url": "https://doctor.webmd.com/"
       }
     ]
   }

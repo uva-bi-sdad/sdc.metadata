@@ -9,7 +9,7 @@
     "long_name": "Emergency department visits for drug overdose rate per 100,000 residents",
     "short_description": "Average emergency department visits for drug overdose per 100,000 residents.",
     "long_description": "Average emergency department visits for drug overdose per 100,000 residents.",
-    "statement": "The average emergency department visits for drug overdose rate in {features.name} is {value} per 100,000 residents.",
+    "statement": "The average emergency department visits for drug overdose rate in {features.name} is {value}.",
     "sources": [
       {
         "name": "Virginia Department of Health",
