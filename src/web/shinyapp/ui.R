@@ -6,19 +6,18 @@ shinyUI(fluidPage(
   helpText("Changes to the table will be automatically saved to the source file."),
   # uncomment line below to use action button to commit changes
 
-  actionButton("saveBtn", "Save"),
   tabsetPanel(type = "tabs",
               tabPanel("resolutions",
-                       div(id='myid', rHandsontableOutput("hot"))
-
+                       actionButton("saveRes", "Save"),
+                       div(id='myid', rHandsontableOutput("hotRes"))
                        ),
               tabPanel("coverages",
-
-
+                       actionButton("saveCvg", "Save"),
+                       div(id='myid', rHandsontableOutput("hotCvg"))
                        ),
               tabPanel("sources",
-
-
+                       actionButton("saveSrc", "Save"),
+                       div(id='myid', rHandsontableOutput("hotSrc"))
                        )
   )
 
