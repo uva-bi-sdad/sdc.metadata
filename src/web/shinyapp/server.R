@@ -44,6 +44,7 @@ shinyServer(function(input, output, session) {
       con <- get_db_conn()
       up <- readr::read_csv(fname)
       DBI::dbWriteTable(con, c("dc_metadata", "dataset_resolution_types"), up, overwrite = TRUE, row.names = FALSE)
+      DBI::dbSendQuery(con, "ALTER TABLE dc_metadata.dataset_resolution_types OWNER TO data_commons")
       DBI::dbDisconnect(con)
 
       print(fname)
@@ -66,6 +67,7 @@ shinyServer(function(input, output, session) {
       con <- get_db_conn()
       up <- readr::read_csv(fname)
       DBI::dbWriteTable(con, c("dc_metadata", "dataset_coverage_areas"), up, overwrite = TRUE, row.names = FALSE)
+      DBI::dbSendQuery(con, "ALTER TABLE dc_metadata.dataset_coverage_areas OWNER TO data_commons")
       DBI::dbDisconnect(con)
 
       print(fname)
@@ -88,6 +90,7 @@ shinyServer(function(input, output, session) {
       con <- get_db_conn()
       up <- readr::read_csv(fname)
       DBI::dbWriteTable(con, c("dc_metadata", "dataset_source_info"), up, overwrite = TRUE, row.names = FALSE)
+      DBI::dbSendQuery(con, "ALTER TABLE dc_metadata.dataset_source_info OWNER TO data_commons")
       DBI::dbDisconnect(con)
 
       print(fname)
