@@ -53,8 +53,6 @@ shinyServer(function(input, output, session) {
 
 
   observeEvent(input$saveCvg, {
-    # remove button and isolate to update file automatically
-    # after each table change
 
     fname = "dataset_coverage_areas.csv"
 
