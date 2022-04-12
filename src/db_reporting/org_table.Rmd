@@ -1,0 +1,256 @@
+---
+title: "Data Commons Data Catalog"
+author: "Joanna Schroeder"
+date: "3/29/2022"
+output: html_document
+---
+
+### Goal: Catalog SDAD data commons data sources and check for geographic and temporal completeness 
+
+### Inputs:
+* Excel spreadsheet with information about each source
+* Database tables with columns measure, year, and geoids
+* Desired temporal range and geographic bounds
+
+### Output: Interactive data catalog
+
+```{r setup, include=TRUE}
+# HANNA RUN THIS (ignore lines commented out)
+# It will only work for one schema at a time at the moment, you can fix that if you want
+# It will also skip over tables that don't have a 'measure' column
+
+# loading packages
+for (pkg in c("tidyverse", "data.table", "stringr", "mosaic", "dplyr", "readr", "gt", "reactable", "readxl", "htmltools")) {
+  library(pkg, character.only = TRUE)
+}
+
+# db connection function if not in environment
+get_db_conn <-
+  function(db_name = "sdad",
+           db_host = "postgis1",
+           db_port = "5432",
+           db_user = Sys.getenv("db_usr"),
+           db_pass = Sys.getenv("db_pwd")) {
+    RPostgreSQL::dbConnect(
+      drv = RPostgreSQL::PostgreSQL(),
+      dbname = db_name,
+      host = db_host,
+      port = db_port,
+      user = db_user,
+      password = db_pass
+    )
+  }
+
+knitr::opts_chunk$set(echo = TRUE)
+
+# Pull all dc tables from database
+#dc_education_training  
+#dc_health_behavior_diet  
+#dc_transport_housing  
+#dc_environment_land_use  
+#dc_population_characteristics  
+#dc_economic_well_being  
+#dc_business_climate  
+#dc_public_safety  
+
+# these are our schemas, it will only work for one at a time at the moment
+#schemas = c("dc_education_training", "dc_health_behavior_diet", "dc_transport_housing", "dc_transport_housing", "dc_environment_land_use", "dc_population_characteristics", "dc_economic_well_being", "dc_business_climate", "dc_public_safety")
+schemas = c("dc_health_behavior_diet")
+
+#sources <- read_excel("sources.xlsx")
+
+#con <- get_db_conn()
+#civ <- DBI::dbGetQuery(con, "SELECT * FROM dc_geographies.va_013_arl_2020_civic_assoc_geo_names")	
+#sd <- DBI::dbGetQuery(con, "SELECT * FROM	dc_geographies.ncr_sd_nces_2021_school_district_names")	
+#census <- DBI::dbGetQuery(con, "SELECT * FROM	dc_geographies.ncr_cttrbg_tiger_2010_2020_geo_names")	
+#hd <- DBI::dbGetQuery(con, "SELECT * FROM	dc_geographies.va_hd_vdh_2021_health_district_geo_names")	
+#DBI::dbDisconnect(con)
+
+# vdh = hd, ct, tr in va
+# ncr = ct, tr, bg, nb in ncr
+
+#ncr <- "^24021|^24031|^24033|^24017|^11001|^51107|^51059|^51153|^51013|^51510|^51683|^51600|^51610|^51685"
+
+#geos <- civ %>% rbind(census) %>% rbind(hd)
+#geos <- geos %>% mutate(vdh = case_when(
+#  str_detect(geoid, "^51") & region_type == "health district" ~ TRUE,
+#  str_detect(geoid, "^51") & region_type == "county" ~ TRUE,
+#  str_detect(geoid, "^51") & region_type == "tract" ~ TRUE,
+#  TRUE ~ FALSE 
+#), ncr = case_when(
+#  str_detect(geoid, ncr) ~ TRUE,
+#  region_type == "neighborhood" ~ TRUE,
+#  TRUE ~ FALSE 
+#))
+
+#vdh <- geos %>% filter(vdh == TRUE) %>% pull(geoid)
+#ncr <- geos %>% filter(ncr == TRUE) %>% pull(geoid)
+
+# initalize some objects
+tables <- list()
+info <- list()
+# loop through schemas to pull out all table names
+for(i in 1:length(schemas)){
+con <- get_db_conn()
+schema = schemas[i]
+full_table_names <- DBI::dbGetQuery(con, paste0("SELECT table_name FROM information_schema.tables WHERE table_schema = '", schema, "'"))
+DBI::dbDisconnect(con)
+
+# make a list with table names grouped by table title (last part of full table name after year)
+as.data.frame(full_table_names)
+full_table_names <- full_table_names %>% mutate(table_title = sub("^.*\\d{4}(?:q\\d)?_|\\.\\w{3,4}(?:\\.[gbx]z2?)?$", "", table_name))
+tables[i] = list(table_names = full_table_names)
+}
+names(tables) <- schemas
+
+# make a list of full table names
+testing <- tables[[`schema`]]
+titles <- split(as.list(strsplit(testing$table_name, ",")), testing$table_title)
+
+# loops through titles to select distinct measure, adds levels for table info to list object titles
+for(i in 1:length(titles)){
+  num_tables <- length(titles[[i]])
+  print(paste0("start loop ", i))
+  print(num_tables)
+  for(q in 1:num_tables){
+  table_name = titles[[i]][[q]]
+  tryCatch({
+    con <- get_db_conn()
+    table_info <- DBI::dbGetQuery(con, paste0("SELECT DISTINCT measure
+                FROM ", schema, ".", table_name))
+    DBI::dbDisconnect(con)
+    titles[[i]][[q]]$table_info <- table_info %>% mutate(full_name = paste0(sub("^.*\\d{4}(?:q\\d)?_|\\.\\w{3,4}(?:\\.[gbx]z2?)?$", "", table_name), ":", measure))
+    print(paste0("input df ", q))
+    titles[[i]][[q]][1] <- NULL
+    
+  }, 
+  error = function(e) {
+    info[[i]] <- list(info = NA)
+  })
+  }
+}
+
+## OUTPUT = list object "titles"
+## contains combined table info:
+## level 1: table title (last part of full table name after year)
+## level 2: individual table (full table name location_resolution_datasource_timeperiod_title)
+## level 3: table info dataframe:
+#           - measures: measure names
+#           - full_name: title:measure_name
+
+## IGNORE the rest
+
+#%>% flatten() %>% flatten()
+#combined_info <- do.call(rbind.data.frame, combined_info)
+#what <- titles %>% flatten()
+
+
+#con <- get_db_conn()
+#cols <- DBI::dbGetQuery(con, "SELECT column_name FROM information_schema.columns
+#                WHERE table_name = 'dmv_bg_2021_ems_acccess_scores'")
+#DBI::dbDisconnect(con)
+
+
+#con <- get_db_conn()
+#info <- DBI::dbGetQuery(con, "SELECT DISTINCT measure, year, geoid
+#                FROM dc_education_training.va_tr_acs_2015_2019_emp_rate") %>%
+#  mutate(schema = schema, table = table)
+#DBI::dbDisconnect(con)
+
+#schema <- "dc_health_behavior_diet"
+#table_names <- c("va_tr_sdad_2015_2019_percent_poor_phys_hlth_days_14_and_over", "dmv_bg_2021_ems_acccess_scores")
+#for(i in 1:length(table_names)){
+#  table_name <- table_names[i]
+#  tryCatch({
+#    con <- get_db_conn()
+#    info <- DBI::dbGetQuery(con, paste0("SELECT DISTINCT measure, year, geoid
+#                FROM ", schema, ".", table_name))
+#    DBI::dbDisconnect(con)
+#  }, error = function(e) {
+#  })
+#  print(info)}
+
+```
+
+```{r}
+vdh_hd <- str_subset(vdh, "^51_hd")
+vdh_ct <- str_subset(vdh, "\\b[:digit:]{5}\\b")
+vdh_tr <- str_subset(vdh, "\\b[:digit:]{11}\\b")
+
+# CREATE TABLE
+tb <- NULL
+bbg_table <- list()
+bg_table <- list()
+tab_summary_vdh <- function(combined_info){
+  for(x in 1:length(combined_info)){
+    table_name <- names(combined_info[x])
+    tb <- combined_info[[x]] %>% flatten()
+    sm_info <- do.call(rbind.data.frame, tb)
+ #   measures <- unique(sm_info$measure)
+ #   for(m in 1:length(measures)){
+    mfo <- sm_info %>% group_by(full_name, year) %>% mutate(hd_match = ifelse(geoid %in% vdh_hd, TRUE, FALSE), ct_match = ifelse(geoid %in% vdh_ct, TRUE, FALSE), tr_match = ifelse(geoid %in% vdh_tr, TRUE, FALSE)) %>%
+      mutate(hd_complete = round(sum(hd_match == TRUE)/length(vdh_hd) * 100, 2),
+             ct_complete = round(sum(ct_match == TRUE)/length(vdh_ct) * 100, 2),
+             tr_complete = round(sum(tr_match == TRUE)/length(vdh_tr) * 100, 2)) %>% ungroup() %>% distinct(measure, year, hd_complete, ct_complete, tr_complete, full_name) %>% mutate(schema = "dc_education_training", table = table_name)
+#    bg_table[m] <- list(name = mfo)
+    bbg_table[[x]] <- mfo
+    }
+  return(bbg_table)
+}
+
+#sm_info <- combined_info[[1]][["table_info"]]
+#measures <- unique(sm_info$measure)
+#mfo <- sm_info %>% filter(measure == measures[2]) %>% mutate(vdh_pres = ifelse(geoid %in% vdh == TRUE, TRUE, FALSE)) %>% mutate(ncr_pres = ifelse(geoid %in% ncr == TRUE, TRUE, FALSE)) %>% group_by(year, vdh_pres) %>% mutate(vdh_count = n(), vdh_percent_complete = round(vdh_count/length(vdh) * 100, 2)) %>% group_by(year, ncr_pres) %>% mutate(ncr_count = n(), ncr_percent_complete = round(vdh_count/length(ncr) * 100, 2)) %>% select(-vdh_pres, -ncr_pres) %>% distinct(measure, year, ncr_percent_complete, vdh_percent_complete)
+
+
+summary <- tab_summary_vdh(combined_info)
+#summary <- summary %>% flatten()
+summary <- do.call(rbind.data.frame, summary)
+
+#summary <- summary %>% mutate(temp = str_extract(table, "[^[:digit:]{4}]*")) %>% separate(temp, c("geo", "res", "source"), "_") %>% left_join(sources, by = "source") %>%
+#  select(measure, year, regions, schema, table, geo, res, source, name, link)
+
+
+summary <- summary %>% arrange(table_name)
+summary <- summary %>% mutate(full_name = paste0(sub("^.*\\d{4}(?:q\\d)?_|\\.\\w{3,4}(?:\\.[gbx]z2?)?$", "", table), ":", measure))
+
+info <- jsonlite::read_json("~/info.R")
+selected_measures <- names(info)
+
+summary <- summary %>% filter(full_name %in% selected_measures)
+
+table <- reactable(summary,
+  height = 1000,
+  filterable = TRUE,
+  striped = TRUE,
+  defaultPageSize = 20,
+#  columns = list(
+#    year = colDef(
+#      style = function(value) {
+#        if(value == TRUE) {
+#          color <- "#008000"
+#          } else {
+#            color <- "#e00000"
+#            } 
+#        list(color = color, fontWeight = "bold") 
+#        }),
+#    regions = colDef(
+#      style = function(value) {
+#        if(value == TRUE) {
+#          color <- "#008000"
+#          } else {
+#            color <- "#e00000"
+#            }
+#        list(color = color, fontWeight = "bold") 
+#        })
+#  )
+  )
+
+withtitle <- htmlwidgets::prependContent(table, 
+    h2(class = "title", "SDAD Data Commons Data Catalog"))#,
+   # h3(class = "title", "Completeness for 2021 and VDH Regions"))
+
+withtitle
+
+```
+
