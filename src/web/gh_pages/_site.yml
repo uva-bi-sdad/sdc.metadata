@@ -1,4 +1,10 @@
 name: "Social Impact Data Commons Metadata"
 output_dir: "../../../docs"
 exclude: ["*.nb.html", "*.csv", "*.CSV", "*.dcf", "parlog", "old", "dashboard"]
-
+navbar:
+  title: "Data Commons Metadata"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
