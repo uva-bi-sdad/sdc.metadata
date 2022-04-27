@@ -1,0 +1,4 @@
+name: "Social Impact Data Commons Metadata"
+output_dir: "../../../docs"
+exclude: ["*.nb.html", "*.csv", "*.CSV", "*.dcf", "parlog", "old", "dashboard"]
+
