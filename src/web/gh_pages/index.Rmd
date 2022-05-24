@@ -20,6 +20,7 @@ dataset_coverage_areas <- DBI::dbGetQuery(con, "SELECT * FROM dc_metadata.datase
 dataset_measure_types <- DBI::dbGetQuery(con, "SELECT * FROM dc_metadata.dataset_measure_type")
 dataset_resolution_types <- DBI::dbGetQuery(con, "SELECT * FROM dc_metadata.dataset_resolution_types")
 dataset_source_info <- DBI::dbGetQuery(con, "SELECT * FROM dc_metadata.dataset_source_info")
+dataset_measure_definitions <- DBI::dbGetQuery(con, "SELECT * FROM dc_metadata.dataset_measures_definitions")
 DBI::dbDisconnect(con)
 ```
 
@@ -46,4 +47,272 @@ datatable(dataset_resolution_types)
 
 ```{r dataset_source_info, echo=FALSE}
 datatable(dataset_source_info)
+```
+
+```{r dataset_measure_completeness, include=FALSE}
+library(tidyverse)
+options(warn = -1)
+# HEALTH BEHAVIOR DIET
+con <- get_db_conn()
+schema = "dc_health_behavior_diet"
+full_table_names <- DBI::dbGetQuery(con, paste0("SELECT table_name FROM information_schema.tables WHERE table_schema = '", schema, "'"))
+DBI::dbDisconnect(con)
+tables <- NULL
+megatable <- NULL
+# Filter for measure
+measures <- unique(megatable$measure)
+for(i in 1:length(full_table_names$table_name)){{
+  table_name <- full_table_names$table_name[i]
+  con <- get_db_conn()
+  table <- DBI::dbGetQuery(con, paste0("SELECT * FROM ", schema, ".", table_name))
+  DBI::dbDisconnect(con)
+  table <- table %>% select(any_of(c("measure", "geoid", "region_type", "year"))) %>%
+    mutate(across(everything(), as.character))
+  }
+  tables[[i]] <- table
+}
+megatable <- do.call(bind_rows, tables) %>% drop_na(measure)
+# Filter for measure
+measures <- unique(megatable$measure)
+completeness <- NULL
+for(i in 1:length(measures)){
+  m_name <- measures[i]
+  sum <- megatable %>% filter(measure == m_name) %>% group_by(year, region_type) %>% 
+    summarise(count =  n()) %>%
+    mutate(complete = case_when(
+    region_type == "block group" & count > 3576 ~ "yes",
+    region_type == "tract" & count > 1322 ~ "yes",
+    region_type == "county" & count > 14 ~ "yes",
+    region_type == "neighborhood" & count > 62 ~ "yes",
+    # eventually add zipcode, planning district, supervisor district etc
+    TRUE ~ "no"
+  )) %>% mutate(measure = m_name) %>% pivot_wider(id_cols = measure, names_from = c(year, region_type), values_from = complete)
+  completeness <- completeness %>% bind_rows(sum)
+}
+# DIGITAL COMMUNICATIONS
+con <- get_db_conn()
+schema = "dc_digital_communications"
+full_table_names <- DBI::dbGetQuery(con, paste0("SELECT table_name FROM information_schema.tables WHERE table_schema = '", schema, "'"))
+DBI::dbDisconnect(con)
+tables <- NULL
+megatable <- NULL
+# Filter for measure
+measures <- unique(megatable$measure)
+for(i in 1:length(full_table_names$table_name)){{
+  table_name <- full_table_names$table_name[i]
+  con <- get_db_conn()
+  table <- DBI::dbGetQuery(con, paste0("SELECT * FROM ", schema, ".", table_name))
+  DBI::dbDisconnect(con)
+  table <- table %>% select(any_of(c("measure", "geoid", "region_type", "year"))) %>%
+    mutate(across(everything(), as.character))
+  }
+  tables[[i]] <- table
+}
+megatable <- do.call(bind_rows, tables) %>% drop_na(measure)
+# Filter for measure
+measures <- unique(megatable$measure)
+for(i in 1:length(measures)){
+  m_name <- measures[i]
+  sum <- megatable %>% filter(measure == m_name) %>% group_by(year, region_type) %>% 
+    summarise(count =  n()) %>%
+    mutate(complete = case_when(
+    region_type == "block group" & count > 3576 ~ "yes",
+    region_type == "tract" & count > 1322 ~ "yes",
+    region_type == "county" & count > 14 ~ "yes",
+    region_type == "neighborhood" & count > 62 ~ "yes",
+    # eventually add zipcode, planning district, supervisor district etc
+    TRUE ~ "no"
+  )) %>% mutate(measure = m_name) %>% pivot_wider(id_cols = measure, names_from = c(year, region_type), values_from = complete)
+  completeness <- completeness %>% bind_rows(sum)
+}
+# EDUCATION TRAINING
+con <- get_db_conn()
+schema = "dc_education_training"
+full_table_names <- DBI::dbGetQuery(con, paste0("SELECT table_name FROM information_schema.tables WHERE table_schema = '", schema, "'"))
+DBI::dbDisconnect(con)
+tables <- NULL
+megatable <- NULL
+# Filter for measure
+measures <- unique(megatable$measure)
+for(i in 1:length(full_table_names$table_name)){{
+  table_name <- full_table_names$table_name[i]
+  con <- get_db_conn()
+  table <- DBI::dbGetQuery(con, paste0("SELECT * FROM ", schema, ".", table_name))
+  DBI::dbDisconnect(con)
+  table <- table %>% select(any_of(c("measure", "geoid", "region_type", "year"))) %>%
+    mutate(across(everything(), as.character))
+  }
+  tables[[i]] <- table
+}
+megatable <- do.call(bind_rows, tables) %>% drop_na(measure)
+# Filter for measure
+measures <- unique(megatable$measure)
+for(i in 1:length(measures)){
+  m_name <- measures[i]
+  sum <- megatable %>% filter(measure == m_name) %>% group_by(year, region_type) %>% 
+    summarise(count =  n()) %>%
+    mutate(complete = case_when(
+    region_type == "block group" & count > 3576 ~ "yes",
+    region_type == "tract" & count > 1322 ~ "yes",
+    region_type == "county" & count > 14 ~ "yes",
+    region_type == "neighborhood" & count > 62 ~ "yes",
+    # eventually add zipcode, planning district, supervisor district etc
+    TRUE ~ "no"
+  )) %>% mutate(measure = m_name) %>% pivot_wider(id_cols = measure, names_from = c(year, region_type), values_from = complete)
+  completeness <- completeness %>% bind_rows(sum)
+}
+# TRANSPORTATION HOUSING
+con <- get_db_conn()
+schema = "dc_transportation_housing"
+full_table_names <- DBI::dbGetQuery(con, paste0("SELECT table_name FROM information_schema.tables WHERE table_schema = '", schema, "'"))
+DBI::dbDisconnect(con)
+tables <- NULL
+megatable <- NULL
+# Filter for measure
+measures <- unique(megatable$measure)
+for(i in 1:length(full_table_names$table_name)){{
+  table_name <- full_table_names$table_name[i]
+  con <- get_db_conn()
+  table <- DBI::dbGetQuery(con, paste0("SELECT * FROM ", schema, ".", table_name))
+  DBI::dbDisconnect(con)
+  table <- table %>% select(any_of(c("measure", "geoid", "region_type", "year"))) %>%
+    mutate(across(everything(), as.character))
+  }
+  tables[[i]] <- table
+}
+megatable <- do.call(bind_rows, tables) %>% drop_na(measure)
+# Filter for measure
+measures <- unique(megatable$measure)
+for(i in 1:length(measures)){
+  m_name <- measures[i]
+  sum <- megatable %>% filter(measure == m_name) %>% group_by(year, region_type) %>% 
+    summarise(count =  n()) %>%
+    mutate(complete = case_when(
+    region_type == "block group" & count > 3576 ~ "yes",
+    region_type == "tract" & count > 1322 ~ "yes",
+    region_type == "county" & count > 14 ~ "yes",
+    region_type == "neighborhood" & count > 62 ~ "yes",
+    # eventually add zipcode, planning district, supervisor district etc
+    TRUE ~ "no"
+  )) %>% mutate(measure = m_name) %>% pivot_wider(id_cols = measure, names_from = c(year, region_type), values_from = complete)
+  completeness <- completeness %>% bind_rows(sum)
+}
+# ENVIRONMENT LAND USE
+con <- get_db_conn()
+schema = "dc_environment_land_use"
+full_table_names <- DBI::dbGetQuery(con, paste0("SELECT table_name FROM information_schema.tables WHERE table_schema = '", schema, "'"))
+DBI::dbDisconnect(con)
+tables <- NULL
+megatable <- NULL
+# Filter for measure
+measures <- unique(megatable$measure)
+for(i in 1:length(full_table_names$table_name)){{
+  table_name <- full_table_names$table_name[i]
+  con <- get_db_conn()
+  table <- DBI::dbGetQuery(con, paste0("SELECT * FROM ", schema, ".", table_name))
+  DBI::dbDisconnect(con)
+  table <- table %>% select(any_of(c("measure", "geoid", "region_type", "year"))) %>%
+    mutate(across(everything(), as.character))
+  }
+  tables[[i]] <- table
+}
+megatable <- do.call(bind_rows, tables) %>% drop_na(measure)
+# Filter for measure
+measures <- unique(megatable$measure)
+for(i in 1:length(measures)){
+  m_name <- measures[i]
+  sum <- megatable %>% filter(measure == m_name) %>% group_by(year, region_type) %>% 
+    summarise(count =  n()) %>%
+    mutate(complete = case_when(
+    region_type == "block group" & count > 3576 ~ "yes",
+    region_type == "tract" & count > 1322 ~ "yes",
+    region_type == "county" & count > 14 ~ "yes",
+    region_type == "neighborhood" & count > 62 ~ "yes",
+    # eventually add zipcode, planning district, supervisor district etc
+    TRUE ~ "no"
+  )) %>% mutate(measure = m_name) %>% pivot_wider(id_cols = measure, names_from = c(year, region_type), values_from = complete)
+  completeness <- completeness %>% bind_rows(sum)
+}
+# EMPLOYMENT ECONOMIC WELLBEING
+con <- get_db_conn()
+schema = "dc_employment_economic_well_being"
+full_table_names <- DBI::dbGetQuery(con, paste0("SELECT table_name FROM information_schema.tables WHERE table_schema = '", schema, "'"))
+DBI::dbDisconnect(con)
+tables <- NULL
+megatable <- NULL
+# Filter for measure
+measures <- unique(megatable$measure)
+for(i in 1:length(full_table_names$table_name)){{
+  table_name <- full_table_names$table_name[i]
+  con <- get_db_conn()
+  table <- DBI::dbGetQuery(con, paste0("SELECT * FROM ", schema, ".", table_name))
+  DBI::dbDisconnect(con)
+  table <- table %>% select(any_of(c("measure", "geoid", "region_type", "year"))) %>%
+    mutate(across(everything(), as.character))
+  }
+  tables[[i]] <- table
+}
+megatable <- do.call(bind_rows, tables) %>% drop_na(measure)
+# Filter for measure
+measures <- unique(megatable$measure)
+for(i in 1:length(measures)){
+  m_name <- measures[i]
+  sum <- megatable %>% filter(measure == m_name) %>% group_by(year, region_type) %>% 
+    summarise(count =  n()) %>%
+    mutate(complete = case_when(
+    region_type == "block group" & count > 3576 ~ "yes",
+    region_type == "tract" & count > 1322 ~ "yes",
+    region_type == "county" & count > 14 ~ "yes",
+    region_type == "neighborhood" & count > 62 ~ "yes",
+    # eventually add zipcode, planning district, supervisor district etc
+    TRUE ~ "no"
+  )) %>% mutate(measure = m_name) %>% pivot_wider(id_cols = measure, names_from = c(year, region_type), values_from = complete)
+  completeness <- completeness %>% bind_rows(sum)
+}
+# POPULATION CHARACTERISTICS
+con <- get_db_conn()
+schema = "dc_population_characteristics"
+full_table_names <- DBI::dbGetQuery(con, paste0("SELECT table_name FROM information_schema.tables WHERE table_schema = '", schema, "'"))
+DBI::dbDisconnect(con)
+tables <- NULL
+megatable <- NULL
+# Filter for measure
+measures <- unique(megatable$measure)
+for(i in 1:length(full_table_names$table_name)){{
+  table_name <- full_table_names$table_name[i]
+  con <- get_db_conn()
+  table <- DBI::dbGetQuery(con, paste0("SELECT * FROM ", schema, ".", table_name))
+  DBI::dbDisconnect(con)
+  table <- table %>% select(any_of(c("measure", "geoid", "region_type", "year"))) %>%
+    mutate(across(everything(), as.character))
+  }
+  tables[[i]] <- table
+}
+megatable <- do.call(bind_rows, tables) %>% drop_na(measure)
+# Filter for measure
+measures <- unique(megatable$measure)
+for(i in 1:length(measures)){
+  m_name <- measures[i]
+  sum <- megatable %>% filter(measure == m_name) %>% group_by(year, region_type) %>% 
+    summarise(count =  n()) %>%
+    mutate(complete = case_when(
+    region_type == "block group" & count > 3576 ~ "yes",
+    region_type == "tract" & count > 1322 ~ "yes",
+    region_type == "county" & count > 14 ~ "yes",
+    region_type == "neighborhood" & count > 62 ~ "yes",
+    # eventually add zipcode, planning district, supervisor district etc
+    TRUE ~ "no"
+  )) %>% mutate(measure = m_name) %>% pivot_wider(id_cols = measure, names_from = c(year, region_type), values_from = complete)
+  completeness <- completeness %>% bind_rows(sum)
+}
+
+
+dataset_measure_definitions_completeness <- dataset_measure_definitions %>% distinct() %>% left_join(completeness, by = "measure") %>% replace(is.na(.), "no") %>%
+  select(schema, measure, definition, contains("2019"), contains("2020"), contains("2021"))
+
+```
+
+## Dataset Measure Descriptions and Completeness
+```{r dataset_measure_defintions, echo=FALSE}
+datatable(dataset_measure_definitions_completeness)
 ```
