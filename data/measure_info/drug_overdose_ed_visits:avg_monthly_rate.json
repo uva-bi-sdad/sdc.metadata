@@ -1,0 +1,21 @@
+{
+  "drug_overdose_ed_visits:avg_overdose_per_100k": {
+    "category": "Behavioral Health, Substance Use Disorder and Recovery",
+    "measure_table": "drug_overdose_ed_visits",
+    "full_name": "drug_overdose_ed_visits:avg_overdose_per_100",
+    "measure": "avg_overdose_per_100k",
+    "type": "rate",
+    "short_name": "ED visits for drug overdose",
+    "long_name": "Emergency department visits for drug overdose rate per 100,000 residents",
+    "short_description": "Average emergency department visits for drug overdose per 100,000 residents.",
+    "long_description": "Average emergency department visits for drug overdose per 100,000 residents.",
+    "statement": "The average emergency department visits for drug overdose rate in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Virginia Department of Health",
+        "date_accessed": "2021",
+        "url": "https://www.vdh.virginia.gov/opioid-data/deaths/"
+      }
+    ]
+  }
+}
