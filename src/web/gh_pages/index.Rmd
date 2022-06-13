@@ -316,3 +316,43 @@ dataset_measure_definitions_completeness <- dataset_measure_definitions %>% dist
 ```{r dataset_measure_defintions, echo=FALSE}
 datatable(dataset_measure_definitions_completeness)
 ```
+
+```{r}
+# a custom table container
+container <- htmltools::withTags(table(
+  class = 'display',
+  thead(
+    tr(
+      th(rowspan = 3, 'schema'),
+      th(rowspan = 3, 'measure'),
+      th(rowspan = 3, 'definition'),
+      th(colspan = 14, '2021')
+    ),
+    tr(
+      th(colspan = 7, 'VA', bgcolor = "#E8E8E8"),
+      th(colspan = 3, 'MD'),
+      th(colspan = 3, 'DC', bgcolor = "#E8E8E8")
+    ),
+    tr(
+      th(colspan = 1, 'county', bgcolor = "#E8E8E8"), 
+      th(colspan = 1, 'tract', bgcolor = "#E8E8E8"),
+      th(colspan = 1, 'block group', bgcolor = "#E8E8E8"),
+      th(colspan = 1, 'supervisor district', bgcolor = "#E8E8E8"), 
+      th(colspan = 1, 'planning district', bgcolor = "#E8E8E8"),
+      th(colspan = 1, 'zipcode', bgcolor = "#E8E8E8"), 
+      th(colspan = 1, 'civic association', bgcolor = "#E8E8E8"),
+      th(colspan = 1, 'county'), 
+      th(colspan = 1, 'tract'),
+      th(colspan = 1, 'block group'),
+      th(colspan = 1, 'county', bgcolor = "#E8E8E8"), 
+      th(colspan = 1, 'tract', bgcolor = "#E8E8E8"),
+      th(colspan = 1, 'block group', bgcolor = "#E8E8E8")
+      )
+    )))
+
+# to run
+#datatable(table, container = container)
+```
+
+
+
