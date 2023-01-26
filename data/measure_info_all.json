@@ -809,52 +809,6 @@
         "statement": "The median drive time to the ten closest emergency medical service facilities to {features.name} is {value}.",
         "type": "drive time"
     },
-    "access_scores_mental:mental_3sfca": {
-        "category": "Health",
-        "citations": [
-            "lou04",
-            "lou09",
-            "lou03",
-            "saxon20"
-        ],
-        "equity_category": "Availability",
-        "full_name": "access_scores_mental:mental_3sfca",
-        "long_description": "Mental health services availability based on 3-step floating catchment areas. This method is an aggregation of facilities per population ratios weighted by distance or travel time in each catchment area (area within which a facility is accessible). Weights are defined for the demand for facilities (adult population).",
-        "long_name": "Mental health services geographic availability (3-step  floating catchment areas)",
-        "measure": "mental_3sfca",
-        "measure_table": "dc_health_behavior_diet.va_hdcttr_sdad_2021_mental_access_scores",
-        "short_description": "Index of mental health services accessibility based on supply and demand of facilities",
-        "short_name": "Mental health services geographic availability",
-        "sources": [
-            {
-                "date_accessed": 2021,
-                "name": "Substance Abuse and Mental Health Services Administration (SAMHSA)",
-                "url": "https://www.samhsa.gov/"
-            }
-        ],
-        "statement": "The mental health services availability for {features.name} is {value}.",
-        "type": "index"
-    },
-    "access_scores_mental:mental_cnt": {
-        "category": "Health",
-        "equity_category": "Availability",
-        "full_name": "access_scores_mental:mental_cnt",
-        "long_description": "Count of mental health facilities based on facility locations. Location data were collected from the Homeland Infrastructure Foundation-Level Data (HIFLD) repository.",
-        "long_name": "Availability of mental health services by count",
-        "measure": "mental_cnt",
-        "measure_table": "dc_health_behavior_diet.va_hdcttr_sdad_2021_mental_access_scores",
-        "short_description": "Count of mental health facilities based on facility locations",
-        "short_name": "Mental health services availability (count)",
-        "sources": [
-            {
-                "date_accessed": 2021,
-                "name": "Substance Abuse and Mental Health Services Administration (SAMHSA)",
-                "url": "https://www.samhsa.gov/"
-            }
-        ],
-        "statement": "There are {value} mental health facilities in {features.name}.",
-        "type": "count"
-    },
     "access_scores_obgyn:obgyn_2sfca": {
         "category": "Health",
         "citations": [
@@ -1291,25 +1245,61 @@
         "statement": "",
         "type": "proportion"
     },
-    "avg_monthly_rate": {
-        "category": "",
-        "equity_category": "",
-        "full_name": "",
-        "long_description": "",
-        "long_name": "",
-        "measure": "avg_monthly_rate",
-        "measure_table": "va_hdct_vdh_2015_2021_drug_overdose_ed_visits.csv.xz",
-        "short_description": "",
-        "short_name": "",
+    "avg_down_using_devices": {
+        "category": "Broadband",
+        "equity_category": "Availability",
+        "full_name": "speed_measurements:avg_down_using_devices",
+        "long_name": "Average Download Speed",
+        "measure_table": "dcmdva_hdcttrbg_2019_2021q3_speed_measurements",
+        "short_description": "Average download speed weighted by number of devices.",
+        "short_name": "Average Download Speed",
         "sources": [
             {
-                "date_accessed": 2022,
-                "name": "",
-                "url": ""
+                "date_accessed": 2021,
+                "name": "Ookla",
+                "url": "https://www.ookla.com/ookla-for-good/open-data"
             }
         ],
-        "statement": "",
-        "type": "rate per 100k"
+        "statement": "The average download speed is {value} in {features.name}.",
+        "type": "internet speed"
+    },
+    "avg_monthly_rate": {
+        "category": "Behavioral Health, Substance Use Disorder and Recovery",
+        "equity_category": "Status",
+        "full_name": "drug_overdose_ed_visits:avg_overdose_per_100",
+        "long_description": "Monthly average emergency department visits for drug overdose per 100,000 residents.",
+        "long_name": "Monthly average emergency department visits for drug overdose rate per 100,000 residents",
+        "measure": "avg_overdose_per_100k",
+        "measure_table": "drug_overdose_ed_visits",
+        "short_description": "Monthly average emergency department visits for drug overdose per 100,000 residents.",
+        "short_name": "Monthly average ED visits for drug overdose",
+        "sources": [
+            {
+                "date_accessed": "2021",
+                "name": "Virginia Department of Health",
+                "url": "https://www.vdh.virginia.gov/surveillance-and-investigation/syndromic-surveillance/drug-overdose-surveillance/"
+            }
+        ],
+        "statement": "The average emergency department visits for drug overdose rate in {features.name} is {value}.",
+        "type": "rate"
+    },
+    "avg_up_using_devices": {
+        "category": "Broadband",
+        "equity_category": "Availability",
+        "full_name": "speed_measurements:avg_up_using_devices",
+        "long_name": "Average Upload Speed",
+        "measure_table": "dcmdva_hdcttrbg_2019_2021q3_speed_measurements",
+        "short_description": "Average upload speed weighted by number of devices.",
+        "short_name": "Average Upload Speed",
+        "sources": [
+            {
+                "date_accessed": 2021,
+                "name": "Ookla",
+                "url": "https://www.ookla.com/ookla-for-good/open-data"
+            }
+        ],
+        "statement": "The average upload speed is {value} in {features.name}.",
+        "type": "internet speed"
     },
     "carpools:perc_carpool": {
         "category": "Transportation",
@@ -1329,7 +1319,6 @@
         "statement": "{value} of the population in {features.name} carpools to work.",
         "type": "percent"
     },
-    "category": "Broadband",
     "commutes:commute_time": {
         "category": "Transportation",
         "equity_category": "Status",
@@ -1663,6 +1652,26 @@
         "statement": "The Hispanic/Latino population is {value} in {features.name}.",
         "type": "percent"
     },
+    "demographics:perc_male": {
+        "category": "Demographics",
+        "equity_category": "Status",
+        "full_name": "demographics:perc_male",
+        "long_description": "The percent of males in the total population in percent. Based on American Community Survey ACS 2010/2021 5-year estimates table S0101.",
+        "long_name": "Male population (percent)",
+        "measure": "perc_male",
+        "measure_table": "va_cttr_2010_2021_perc_male",
+        "short_description": "The percent of males in population. Based on American Community Survey ACS 2010/2021 5-year estimates.",
+        "short_name": "Male population",
+        "sources": [
+            {
+                "date_accessed": 2022,
+                "name": "American Community Survey Table S0101",
+                "url": "https://www.census.gov/programs-surveys/acs.html"
+            }
+        ],
+        "statement": "The male population is {value} in {features.name}.",
+        "type": "percent"
+    },
     "demographics:perc_native": {
         "category": "Demographics",
         "equity_category": "Status",
@@ -1864,7 +1873,6 @@
         "statement": "{value} of the population in {features.name} is employed.",
         "type": "percent"
     },
-    "equity_category": "Affordability",
     "female": {
         "category": "",
         "equity_category": "",
@@ -1984,7 +1992,6 @@
         "statement": "The avocado availability in {features.name} is {value}.",
         "type": "float"
     },
-    "full_name": "perc_income_on_internet:perc_income_avg_nat_package",
     "health_literacy_estimates:health_literacy_estimate": {
         "category": "Education",
         "citations": [
@@ -2356,23 +2363,20 @@
         "type": "per 100k"
     },
     "hlth_ins_pct": {
-        "category": "",
-        "equity_category": "",
-        "full_name": "",
-        "long_description": "",
-        "long_name": "",
-        "measure": "hlth_ins_pct",
-        "measure_table": "va_hdcttr_acs5_2015_2019_no_health_insurance_19_to_64.csv.xz",
-        "short_description": "",
-        "short_name": "",
+        "category": "Health",
+        "long_description": "Percent of the population self-reported to be currently covered by any type of health insurance or health coverage plan. Based on American Community Survey Tables B27010 in ACS 2015/2019 5-year estimates.",
+        "long_name": "Percent of population with health insurance",
+        "short_description": "Percent of the population (ages 19-64) self-reported to be currently covered by any type of health insurance or health coverage plan",
+        "short_name": "Insured population",
         "sources": [
             {
                 "date_accessed": 2022,
-                "name": "",
-                "url": ""
+                "location": "Table B27010",
+                "name": "American Community Survey",
+                "url": "https://www.census.gov/programs-surveys/acs.html"
             }
         ],
-        "statement": "",
+        "statement": "{value} of the population has health insurance in {features.name}.",
         "type": "percent"
     },
     "hosuing_access:median_home_value": {
@@ -3101,8 +3105,6 @@
         "statement": "The tuna availability in {features.name} is {value}.",
         "type": "float"
     },
-    "long_description": "The national average price for internet ($64) as a percentage of median household income.",
-    "long_name": "The national average price for internet as a percentage of average income",
     "male": {
         "category": "",
         "equity_category": "",
@@ -3145,8 +3147,6 @@
         "statement": "In most regions, {value} of 3rd graders pass reading in {region_name}.",
         "type": "percent"
     },
-    "measure": "perc_income_avg_nat_package",
-    "measure_table": "dcmdva_broadbandnow_acs_sdad_2021_perc_income_on_internet",
     "median_household_income": [
         {
             "category": "Financial Well Being",
@@ -3211,6 +3211,69 @@
         "statement": "On average, {value} of 3rd graders pass reading in {region_name}.",
         "type": "percent"
     },
+    "mental_10_near_median": {
+        "category": "Health",
+        "equity_category": "Availability",
+        "long_description": "Median drive time in minutes to the ten closest mental health facilities. Facility location data were collected from the Substance Abuse and Mental Health Services Administration (SAMHSA) repository. Drive times were computed using Open Source Routing Machine (Using roads for year 2021).",
+        "long_name": "Mental health availability by median drive time to the ten closest facilities in minutes",
+        "short_description": "Median drive time (minutes) to the ten closest mental health facilities",
+        "short_name": "Mental health availability (drive time)",
+        "sources": [
+            {
+                "date_accessed": 2021,
+                "name": "Substance Abuse and Mental Health Services Administration (SAMHSA)",
+                "url": "https://findtreatment.gov/"
+            }
+        ],
+        "statement": "The median drive time to the ten closest mental health facilities to {features.name} is {value}.",
+        "type": "drive time"
+    },
+    "mental_3sfca": {
+        "category": "Health",
+        "citations": [
+            "lou04",
+            "lou09",
+            "lou03",
+            "saxon20"
+        ],
+        "equity_category": "Availability",
+        "full_name": "access_scores_mental:mental_3sfca",
+        "long_description": "Mental health services availability based on 3-step floating catchment areas. This method is an aggregation of facilities per population ratios weighted by distance or travel time in each catchment area (area within which a facility is accessible). Weights are defined for the demand for facilities (adult population).",
+        "long_name": "Mental health services geographic availability (3-step  floating catchment areas)",
+        "measure": "mental_3sfca",
+        "measure_table": "dc_health_behavior_diet.va_hdcttr_sdad_2021_mental_access_scores",
+        "short_description": "Index of mental health services accessibility based on supply and demand of facilities",
+        "short_name": "Mental health services geographic availability",
+        "sources": [
+            {
+                "date_accessed": 2021,
+                "name": "Substance Abuse and Mental Health Services Administration (SAMHSA)",
+                "url": "https://www.samhsa.gov/"
+            }
+        ],
+        "statement": "The mental health services availability for {features.name} is {value}.",
+        "type": "index"
+    },
+    "mental_cnt": {
+        "category": "Health",
+        "equity_category": "Availability",
+        "full_name": "access_scores_mental:mental_cnt",
+        "long_description": "Count of mental health facilities based on facility locations. Location data were collected from the Substance Abuse and Mental Health Services Administration (SAMHSA) repository.",
+        "long_name": "Availability of mental health services by count",
+        "measure": "mental_cnt",
+        "measure_table": "dc_health_behavior_diet.va_hdcttr_sdad_2021_mental_access_scores",
+        "short_description": "Count of mental health facilities based on facility locations",
+        "short_name": "Mental health services availability (count)",
+        "sources": [
+            {
+                "date_accessed": 2021,
+                "name": "Substance Abuse and Mental Health Services Administration (SAMHSA)",
+                "url": "https://www.samhsa.gov/"
+            }
+        ],
+        "statement": "There are {value} mental health facilities in {features.name}.",
+        "type": "count"
+    },
     "mrfei:mrfei": {
         "category": "Nutrition and Food Security",
         "equity_category": "Availability",
@@ -3231,23 +3294,20 @@
         "type": "index"
     },
     "no_hlth_ins_pct": {
-        "category": "",
-        "equity_category": "",
-        "full_name": "",
-        "long_description": "",
-        "long_name": "",
-        "measure": "no_hlth_ins_pct",
-        "measure_table": "va_hdcttr_acs5_2015_2019_no_health_insurance_19_to_64.csv.xz",
-        "short_description": "",
-        "short_name": "",
+        "category": "Health",
+        "long_description": "Percent of the population self-reported to not be currently covered by any type of health insurance or health coverage plan. Based on American Community Survey Tables B27010 in ACS 2015/2019 5-year estimates.",
+        "long_name": "Percent of population without health insurance",
+        "short_description": "Percent of the population (ages 19-64) self-reported to not be currently covered by any type of health insurance or health coverage plan",
+        "short_name": "Uninsured population",
         "sources": [
             {
                 "date_accessed": 2022,
-                "name": "",
-                "url": ""
+                "location": "Table B27010",
+                "name": "American Community Survey",
+                "url": "https://www.census.gov/programs-surveys/acs.html"
             }
         ],
-        "statement": "",
+        "statement": "{value} of the population does not have health insurance in {features.name}.",
         "type": "percent"
     },
     "num_vet_MOE": {
@@ -3470,6 +3530,82 @@
         "statement": "",
         "type": "MOE"
     },
+    "perc_hh_with_broadband": {
+        "category": "Broadband",
+        "equity_category": "Availability",
+        "full_name": "broadband_withoutint_compdev:perc_hh_with_broadband",
+        "long_description": "Percentage of households self-reported to have a broadband internet connection. Broadband internet is defined as any type of internet other than a dial-up. Based on American Community Survey Table B28002 in ACS 2015/2019 5-year estimates.",
+        "long_name": "Percentage of households with broadband",
+        "measure_table": "dcmdva_hdcttrbg_2017_2019_broadband_withoutint_compdev",
+        "short_description": "Percentage of households self-reported to have a broadband internet connection (any type of internet other than a dial-up)",
+        "short_name": "Households with broadband",
+        "sources": [
+            {
+                "date_accessed": 2021,
+                "name": "American Community Survey Table B28002",
+                "url": "https://www.census.gov/programs-surveys/acs.html"
+            }
+        ],
+        "statement": "{value} of households in {features.name} have a broadband connection.",
+        "type": "percent"
+    },
+    "perc_hh_with_cable_fiber_dsl": {
+        "category": "Broadband",
+        "equity_category": "Availability",
+        "full_name": "broadband_withoutint_compdev:perc_hh_with_cable_fiber_dsl",
+        "long_description": "Percentage of households self-reported to have a high speed internet service. A high speed internet service is defined as a cable, fiber optic, or DSL internet connection. Based on American Community Survey Table B28002 in ACS 2015/2019 5-year estimates.",
+        "long_name": "Percentage of households with a high speed internet service (cable, fiber optic, or DSL)",
+        "measure_table": "dcmdva_hdcttrbg_2017_2019_broadband_withoutint_compdev",
+        "short_description": "Percentage of households self-reported to have a high speed internet service (cable, fiber optic, or DSL)",
+        "short_name": "Households with cable, fiber optic, or DSL",
+        "sources": [
+            {
+                "date_accessed": 2021,
+                "name": "American Community Survey Table B28002",
+                "url": "https://www.census.gov/programs-surveys/acs.html"
+            }
+        ],
+        "statement": "{value} of households in {features.name} have a cable, fiber optic, or DSL internet connection.",
+        "type": "percent"
+    },
+    "perc_hh_without_compdev": {
+        "category": "Broadband",
+        "equity_category": "Accessibility",
+        "full_name": "broadband_withoutint_compdev:perc_hh_without_compdev",
+        "long_description": "Percentage of the households self-reported to not have a computer or device at home. Based on American Community Survey Table B28002 in ACS 2015/2019 5-year estimates.",
+        "long_name": "Percentage of households without a computer",
+        "measure_table": "dcmdva_hdcttrbg_2017_2019_broadband_withoutint_compdev",
+        "short_description": "Percentage of households self-reported to not have a computer or device at home",
+        "short_name": "Households without a computer",
+        "sources": [
+            {
+                "date_accessed": 2021,
+                "name": "American Community Survey Table B28002",
+                "url": "https://www.census.gov/programs-surveys/acs.html"
+            }
+        ],
+        "statement": "{value} of households in {features.name} do not have a computer or device.",
+        "type": "percent"
+    },
+    "perc_hh_without_internet": {
+        "category": "Broadband",
+        "equity_category": "Availability",
+        "full_name": "broadband_withoutint_compdev:perc_hh_without_internet",
+        "long_description": "Percentage of households self-reported to not have internet access at home. Based on American Community Survey Table B28002 in ACS 2015/2019 5-year estimates.",
+        "long_name": "Percentage of households without internet access",
+        "measure_table": "dcmdva_hdcttrbg_2017_2019_broadband_withoutint_compdev",
+        "short_description": "Percentage of households self-reported to not have internet access at home",
+        "short_name": "Households without internet access",
+        "sources": [
+            {
+                "date_accessed": 2021,
+                "name": "American Community Survey Table B28002",
+                "url": "https://www.census.gov/programs-surveys/acs.html"
+            }
+        ],
+        "statement": "{value} of households in {features.name} do not have internet access.",
+        "type": "percent"
+    },
     "perc_hispanic_or_latino": {
         "category": "",
         "equity_category": "",
@@ -3509,6 +3645,78 @@
         ],
         "statement": "",
         "type": "MOE"
+    },
+    "perc_income_avg_nat_package": {
+        "category": "Broadband",
+        "equity_category": "Affordability",
+        "full_name": "perc_income_on_internet:perc_income_avg_nat_package",
+        "long_description": "The national average price for internet ($64) as a percentage of median household income.",
+        "long_name": "The national average price for internet as a percentage of average income",
+        "measure_table": "dcmdva_broadbandnow_acs_sdad_2021_perc_income_on_internet",
+        "short_description": "The national average price for internet ($64) as a percentage of median household income",
+        "short_name": "Percentage of income for internet (average)",
+        "sources": [
+            {
+                "date_accessed": 2021,
+                "name": "American Community Survey",
+                "url": "https://www.census.gov/programs-surveys/acs.html"
+            },
+            {
+                "date_accessed": 2021,
+                "name": "Broadband Now",
+                "url": "https://broadbandnow.com/"
+            }
+        ],
+        "statement": "The national average internet package costs {value} of the median household income in {features.name}.",
+        "type": "percent"
+    },
+    "perc_income_min_price_100": {
+        "category": "Broadband",
+        "equity_category": "Affordability",
+        "full_name": "perc_income_on_internet:perc_income_min_price_100",
+        "long_description": "The minimum price for fast internet (100 MB/s upload) as a percentage of median household income.",
+        "long_name": "The minimum price for fast internet (100 MB/s upload) as a percentage of median household income",
+        "measure_table": "dcmdva_broadbandnow_acs_sdad_2021_perc_income_on_internet",
+        "short_description": "The minimum price for fast internet (100 MB/s upload) as a percent of median household income",
+        "short_name": "Percentage of income for fast internet",
+        "sources": [
+            {
+                "date_accessed": 2021,
+                "name": "American Community Survey",
+                "url": "https://www.census.gov/programs-surveys/acs.html"
+            },
+            {
+                "date_accessed": 2021,
+                "name": "Broadband Now",
+                "url": "https://broadbandnow.com/"
+            }
+        ],
+        "statement": "Fast internet costs {value} of the median household income in {features.name}.",
+        "type": "percent"
+    },
+    "perc_income_min_price_25": {
+        "category": "Broadband",
+        "equity_category": "Affordability",
+        "full_name": "perc_income_on_internet:perc_income_min_price_25",
+        "long_description": "The minimum price for good internet (25 MB/s upload) as a percentage of median household income.",
+        "long_name": "The minimum price for good internet (25 MB/s upload) as a percentage of median household income",
+        "measure_table": "dcmdva_broadbandnow_acs_sdad_2021_perc_income_on_internet",
+        "short_description": "The minimum price for good internet (25 MB/s upload) as a percentage of median household income",
+        "short_name": "Percentage of income for good internet",
+        "sources": [
+            {
+                "date_accessed": 2021,
+                "name": "American Community Survey",
+                "url": "https://www.census.gov/programs-surveys/acs.html"
+            },
+            {
+                "date_accessed": 2021,
+                "name": "Broadband Now",
+                "url": "https://broadbandnow.com/"
+            }
+        ],
+        "statement": "Good internet costs {value} of the median household income in {features.name}.",
+        "type": "percent"
     },
     "perc_native": {
         "category": "",
@@ -3630,6 +3838,42 @@
         "statement": "",
         "type": "prevalence estimate"
     },
+    "perc_total_100_20_using_devices": {
+        "category": "Broadband",
+        "equity_category": "Availability",
+        "full_name": "percent_above_threshold:perc_total_100_20_using_devices",
+        "long_name": "Percent of the Total Population with Fast Internet Speed",
+        "measure_table": "dcmdva_hdcttrbg_2019_2021q3_percent_above_threshold",
+        "short_description": "Percent of the total population with a fast internet speed (above 100/20 MB/s, able to stream HD video on multiple devices or download large files quickly).",
+        "short_name": "Percent Fast (total)",
+        "sources": [
+            {
+                "date_accessed": 2021,
+                "name": "Ookla",
+                "url": "https://www.ookla.com/ookla-for-good/open-data"
+            }
+        ],
+        "statement": "{value} of the total population in {features.name} has a fast internet speed.",
+        "type": "percent"
+    },
+    "perc_total_25_3_using_devices": {
+        "category": "Broadband",
+        "equity_category": "Availability",
+        "full_name": "percent_above_threshold:perc_total_25_3_using_devices",
+        "long_name": "Percent of the Total Population with Good Internet Speed",
+        "measure_table": "dcmdva_hdcttrbg_2019_2021q3_percent_above_threshold",
+        "short_description": "Percent of the total population with a good internet speed (above 25/3 MB/s, able to stream video or online game for one device).",
+        "short_name": "Percent Good (total)",
+        "sources": [
+            {
+                "date_accessed": 2021,
+                "name": "Ookla",
+                "url": "https://www.ookla.com/ookla-for-good/open-data"
+            }
+        ],
+        "statement": "{value} of the total population in {features.name} has a good internet speed.",
+        "type": "percent"
+    },
     "perc_two_or_more_races": {
         "category": "",
         "equity_category": "",
@@ -3749,6 +3993,42 @@
         ],
         "statement": "",
         "type": "MOE"
+    },
+    "perc_w_int_100_20_using_devices": {
+        "category": "Broadband",
+        "equity_category": "Availability",
+        "full_name": "percent_above_threshold:perc_w_int_100_20_using_devices",
+        "long_name": "Percent of the Internet-Connected Population with Fast Internet Speed",
+        "measure_table": "dcmdva_hdcttrbg_2019_2021q3_percent_above_threshold",
+        "short_description": "Percent of the internet-connected population with a fast internet speed (above 100/20 MB/s, able to stream HD video on multiple devices or download large files quickly).",
+        "short_name": "Percent Fast (internet-connected)",
+        "sources": [
+            {
+                "date_accessed": 2021,
+                "name": "Ookla",
+                "url": "https://www.ookla.com/ookla-for-good/open-data"
+            }
+        ],
+        "statement": "{value} of the internet-connected population in {features.name} has a fast internet speed.",
+        "type": "percent"
+    },
+    "perc_w_int_25_3_using_devices": {
+        "category": "Broadband",
+        "equity_category": "Availability",
+        "full_name": "percent_above_threshold:perc_w_int_25_3_using_devices",
+        "long_name": "Percent of the Internet-Connected Population with Good Internet Speed",
+        "measure_table": "dcmdva_hdcttrbg_2019_2021q3_percent_above_threshold",
+        "short_description": "Percent of the internet-connected population with a good internet speed (above 25/3 MB/s, able to stream video or online game for one device).",
+        "short_name": "Percent Good (internet-connected)",
+        "sources": [
+            {
+                "date_accessed": 2021,
+                "name": "Ookla",
+                "url": "https://www.ookla.com/ookla-for-good/open-data"
+            }
+        ],
+        "statement": "{value} of the internet-connected population in {features.name} has a good internet speed.",
+        "type": "percent"
     },
     "perc_white": {
         "category": "",
@@ -3972,10 +4252,10 @@
     },
     "pop_male": {
         "category": "Demographics",
-        "long_description": "Population of female.",
-        "long_name": "Female population",
-        "short_description": "Population of female.",
-        "short_name": "Female population",
+        "long_description": "Population of male.",
+        "long_name": "Male population",
+        "short_description": "Population of male.",
+        "short_name": "Male population",
         "sources": [
             {
                 "date_accessed": 2022,
@@ -3983,7 +4263,7 @@
                 "url": "https://www.census.gov/programs-surveys/acs.html"
             }
         ],
-        "statement": "The population of female is {value} in {features.name}.",
+        "statement": "The population of male is {value} in {features.name}.",
         "type": "count"
     },
     "pop_native": {
@@ -4738,21 +5018,6 @@
         "statement": "There are {value} <2-year schools per 100k people over 14 in {region_name}.",
         "type": "per 100k"
     },
-    "short_description": "The national average price for internet ($64) as a percentage of median household income",
-    "short_name": "Percentage of income for internet (average)",
-    "sources": [
-        {
-            "date_accessed": 2021,
-            "name": "American Community Survey",
-            "url": "https://www.census.gov/programs-surveys/acs.html"
-        },
-        {
-            "date_accessed": 2021,
-            "name": "Broadband Now",
-            "url": "https://broadbandnow.com/"
-        }
-    ],
-    "statement": "The national average internet package costs {value} of the median household income in {features.name}.",
     "substance_access_scores:subs_10near_median": {
         "category": "Health",
         "equity_category": "Availability",
@@ -4809,7 +5074,6 @@
         "statement": "The total population is {value} in {features.name}.",
         "type": "count"
     },
-    "type": "percent",
     "vehicles:perc_no_vehicle": {
         "category": "Transportation",
         "equity_category": "Status",
