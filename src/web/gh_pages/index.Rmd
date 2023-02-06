@@ -1,17 +1,47 @@
 ---
 title: "Data Commons Metadata"
-author: "Aaron Schroeder"
-date: '2022-04-27'
 output: 
-  html_document:
-    toc: yes
-    toc_float: yes
-    toc_depth: 4
+  html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, echo = FALSE, include = FALSE, eval = TRUE}
+knitr::opts_chunk$set(echo = FALSE, include = FALSE, eval = FALSE)
+library(jsonlite)
+
+url <- "https://raw.githubusercontent.com/uva-bi-sdad/dc.metadata/master/data/measure_info_all.json"
+
+#measure_info_all <- measure_info_all[names(measure_info_all) %in% "sources|citations|layer" == FALSE]
+
+library(DT)
+library(purrr)
+library(tidyverse)
+library(data.table)
+library(foreach)
+
 ```
+
+```{r, eval = TRUE}
+rbindlist.v2 <- function(l)
+{
+  l <- l[lapply(l, class) == "list"]
+  df <- foreach(element = l, .combine = bind_rows, .errorhandling = 'remove') %do%
+    {df = unlist(element); df = as.data.frame(t(df)); rm(element); return(df)}
+  rm(l)
+  return(df)
+}
+```
+
+## All measure info table
+
+```{r, eval = TRUE, echo = FALSE, include = TRUE, message = FALSE, warning = FALSE}
+list <- rbindlist.v2(fromJSON(url)) %>% as.data.frame() %>% select(category, equity_category, long_description, long_name, short_description, short_name, statement, type)
+
+
+table <- datatable(list)
+```
+
+
+
 
 ```{r, include=FALSE}
 source("../../../.Rprofile")
@@ -24,26 +54,26 @@ dataset_measure_definitions <- DBI::dbGetQuery(con, "SELECT * FROM dc_metadata.d
 DBI::dbDisconnect(con)
 ```
 
-## Dataset Coverage Areas
+[//]: # (Dataset Coverage Areas)
 
 ```{r dataset_coverage_areas, echo=FALSE}
 library(DT)
 datatable(dataset_coverage_areas)
 ```
 
-## Dataset Measure Types
+[//]: # (Dataset Measure Types)
 
 ```{r dataset_measure_types, echo=FALSE}
 datatable(dataset_measure_types)
 ```
 
-## Dataset Resolution Types
+[//]: # (Dataset Resolution Types)
 
 ```{r dataset_resolution_types, echo=FALSE}
 datatable(dataset_resolution_types)
 ```
 
-## Dataset Source Info
+[//]: # (Dataset Source Info)
 
 ```{r dataset_source_info, echo=FALSE}
 datatable(dataset_source_info)
@@ -312,47 +342,51 @@ dataset_measure_definitions_completeness <- dataset_measure_definitions %>% dist
 
 ```
 
-## Dataset Measure Descriptions and Completeness
+[//]: # (## Dataset Measure Descriptions and Completeness)
+
 ```{r dataset_measure_defintions, echo=FALSE}
 datatable(dataset_measure_definitions_completeness)
 ```
 
-```{r}
+```{r, eval = TRUE, include = TRUE}
 # a custom table container
 container <- htmltools::withTags(table(
   class = 'display',
   thead(
     tr(
-      th(rowspan = 3, 'schema'),
-      th(rowspan = 3, 'measure'),
-      th(rowspan = 3, 'definition'),
-      th(colspan = 14, '2021')
-    ),
-    tr(
-      th(colspan = 7, 'VA', bgcolor = "#E8E8E8"),
-      th(colspan = 3, 'MD'),
-      th(colspan = 3, 'DC', bgcolor = "#E8E8E8")
-    ),
-    tr(
-      th(colspan = 1, 'county', bgcolor = "#E8E8E8"), 
-      th(colspan = 1, 'tract', bgcolor = "#E8E8E8"),
-      th(colspan = 1, 'block group', bgcolor = "#E8E8E8"),
-      th(colspan = 1, 'supervisor district', bgcolor = "#E8E8E8"), 
-      th(colspan = 1, 'planning district', bgcolor = "#E8E8E8"),
-      th(colspan = 1, 'zipcode', bgcolor = "#E8E8E8"), 
-      th(colspan = 1, 'civic association', bgcolor = "#E8E8E8"),
-      th(colspan = 1, 'county'), 
-      th(colspan = 1, 'tract'),
-      th(colspan = 1, 'block group'),
-      th(colspan = 1, 'county', bgcolor = "#E8E8E8"), 
-      th(colspan = 1, 'tract', bgcolor = "#E8E8E8"),
-      th(colspan = 1, 'block group', bgcolor = "#E8E8E8")
-      )
-    )))
+      th(rowspan = 3, 'category'),
+      th(rowspan = 3, 'equity_category'),
+      th(rowspan = 3, 'short_name'),
+      th(colspan = 3, 'long_name'),
+      th(colspan = 3, 'short_description'),
+      th(colspan = 3, 'short_name'),
+      th(colspan = 3, 'type'),
+      th(colspan = 3, 'statement')
+    ))))
+  #,
+#    tr(
+#      th(colspan = 7, 'sources.date_accessed', bgcolor = "#E8E8E8"),
+#      th(colspan = 3, 'sources.name'),
+#      th(colspan = 3, 'DC', bgcolor = "#E8E8E8")
+#    ),
+#    tr(
+#      th(colspan = 1, 'county', bgcolor = "#E8E8E8"), 
+#      th(colspan = 1, 'tract', bgcolor = "#E8E8E8"),
+#      th(colspan = 1, 'block group', bgcolor = "#E8E8E8"),
+#      th(colspan = 1, 'supervisor district', bgcolor = "#E8E8E8"), 
+#      th(colspan = 1, 'planning district', bgcolor = "#E8E8E8"),
+#      th(colspan = 1, 'zipcode', bgcolor = "#E8E8E8"), 
+#      th(colspan = 1, 'civic association', bgcolor = "#E8E8E8"),
+#      th(colspan = 1, 'county'), 
+#      th(colspan = 1, 'tract'),
+#      th(colspan = 1, 'block group'),
+#      th(colspan = 1, 'county', bgcolor = "#E8E8E8"), 
+#      th(colspan = 1, 'tract', bgcolor = "#E8E8E8"),
+#      th(colspan = 1, 'block group', bgcolor = "#E8E8E8")
+#      )
+#    )))
 
 # to run
-#datatable(table, container = container)
+#datatable(list, container = container)
+datatable(list)
 ```
-
-
-
