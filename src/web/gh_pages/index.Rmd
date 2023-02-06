@@ -1,5 +1,5 @@
 ---
-title: "Data Commons Metadata"
+title: "Social Data Commons Data Library"
 output: 
   html_document
 ---
@@ -31,10 +31,10 @@ rbindlist.v2 <- function(l)
 }
 ```
 
-## All measure info table
+## Search all measures
 
 ```{r, eval = TRUE, echo = FALSE, include = TRUE, message = FALSE, warning = FALSE}
-list <- rbindlist.v2(fromJSON(url)) %>% as.data.frame() %>% select(category, equity_category, long_description, long_name, short_description, short_name, statement, type)
+list <- rbindlist.v2(fromJSON(url)) %>% as.data.frame() %>% select(category, long_name, short_description, short_name, statement, type)
 
 
 table <- datatable(list)
