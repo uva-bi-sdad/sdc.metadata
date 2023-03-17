@@ -40,9 +40,6 @@ list <- rbindlist.v2(fromJSON(url)) %>% as.data.frame() %>% select(category, lon
 table <- datatable(list)
 ```
 
-
-
-
 ```{r, include=FALSE}
 source("../../../.Rprofile")
 con <- get_db_conn()
@@ -389,4 +386,36 @@ container <- htmltools::withTags(table(
 # to run
 #datatable(list, container = container)
 datatable(list)
+```
+
+## Dataset column descriptions
+```{r, eval = TRUE, echo = FALSE, include = TRUE, message = FALSE, warning = FALSE}
+data.table(as.character(read_json("https://raw.githubusercontent.com/uva-bi-sdad/data_repo_structure/main/column_structure.json"))) %>% cbind(
+  c("An abbreviated name of the measure", 
+    "Type of measure, being taken out",
+    "Standard name for the geography",
+    "Geographic resolution of the measure",
+    "The actual value for that measure, geoid, year combination",
+    "The year for the measure",
+    "Margin of error for the measure, if available"))
+```
+
+
+## Measure info key descriptions
+```{r, eval = TRUE, echo = FALSE, include = TRUE, message = FALSE, warning = FALSE}
+data.table(names(read_json("https://raw.githubusercontent.com/uva-bi-sdad/data_repo_structure/main/measure_info_template.json"))) %>% cbind(
+  c("Thematic category for the measure, corresponds to SDC data areas", 
+    "Being taken out",
+    "Short name for the measure (nchar recommended)",
+    "Long name for the measure (nchar recommended)",
+    "Short description for the measure (nchar recommended)",
+    "Long description for the measure (nchar recommended)",
+    "Describes how the measure relates to equity. One of Status, Accessibility, Availability, or Affordability",
+    "Source of the data for the measure, if transformed data the primary data source",
+    "Any references asssociated with the production of the data, e.g. paper citing the method, reports creating the method")
+  
+# type
+#units = units associated with the value to interpret the measure
+#data_type = automatically generated, either character or numeric
+#measure_type = type of the measure, one of (kathryn's list)
 ```
