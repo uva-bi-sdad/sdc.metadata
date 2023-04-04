@@ -8,7 +8,7 @@ output:
 knitr::opts_chunk$set(echo = FALSE, include = FALSE, eval = FALSE)
 library(jsonlite)
 
-url <- "https://raw.githubusercontent.com/uva-bi-sdad/dc.metadata/master/data/measure_info_all.json"
+url <- "https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/data/measure_info_all.json"
 
 #measure_info_all <- measure_info_all[names(measure_info_all) %in% "sources|citations|layer" == FALSE]
 
