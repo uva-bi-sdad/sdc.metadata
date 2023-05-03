@@ -6,5 +6,9 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "About"
-      href: about.html
+#    - text: "For Users"
+#      href: external.html
+#    - text: "For Developers"
+#      href: internal.html
+    - text: "About this Project"
+      href: uva-bi-sdad.github.io/sdc.intro/
