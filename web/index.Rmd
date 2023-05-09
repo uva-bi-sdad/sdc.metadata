@@ -53,18 +53,18 @@ list %>% datatable()
 
 ## Dataset column descriptions {#columns}
 ```{r column_descriptions, eval = TRUE, echo = FALSE, include = TRUE, message = FALSE, warning = FALSE}
-region_types <- unlist(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/src/data_repo_structure/region_types.json")) %>% paste0(., collapse = ", ")
-measure_types <- unlist(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/src/data_repo_structure/measure_types.json")) %>% paste0(., collapse = ", ")
+region_types <- unlist(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/data/region_types.json")) %>% paste0(., collapse = ", ")
+measure_types <- unlist(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/data/measure_types.json")) %>% paste0(., collapse = ", ")
 
-data.table(as.character(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/src/data_repo_structure/column_structure.json"))) %>% 
+data.table(as.character(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/data/column_structure.json"))) %>% 
   cbind(c(
     "ID for the geography, see <a href = 'https://github.com/uva-bi-sdad/sdc.geographies'> sdc.geographies
     standards</a>", 
     "Human and machine readable ID, see <a href = '#measure'> see measure format</a>",
     paste0("Type of the measure, one of [", measure_types, "]"),
-    "Name of the region mapped to geoid, see <a href = 'https://github.com/uva-bi-sdad/sdc.geographies'>
-    sdc.geographies standards</a>",
-    paste0("Geographic resolution of the measure, one of [", region_types, "]"),
+    #"Name of the region mapped to geoid, see <a href = 'https://github.com/uva-bi-sdad/sdc.geographies'>
+    #sdc.geographies standards</a>",
+    #paste0("Geographic resolution of the measure, one of [", region_types, "]"),
     "Value of the measure for the given measure, geoid, and year combination",
     "The year of the measure",
     "Margin of error for the measure (if available)")) %>% 
@@ -76,9 +76,9 @@ data.table(as.character(read_json("https://raw.githubusercontent.com/uva-bi-sdad
 
 ## measure_info key descriptions {#measure_info}
 ```{r measure_info_key_descriptions, eval = TRUE, echo = FALSE, include = TRUE, message = FALSE, warning = FALSE}
-data_types <-  unlist(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/src/data_repo_structure/data_types.json")) %>% paste0(., collapse = ", ")
+data_types <-  unlist(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/data/data_types.json")) %>% paste0(., collapse = ", ")
 
-data.table(as.character(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/src/data_repo_structure/measure_structure.json"))) %>%
+data.table(as.character(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/data/measure_structure.json"))) %>%
   cbind(c(
     "Thematic category or categories for the measure, one or more of of ['Behavioral Health, Substance Use Disorder and Recovery', 'Business Climate', 'Broadband', 'Demographics', 'Education', 'Employment/Workforce Development', 'Health', 'Housing', 'Health Opportunity Index', 'Nutrition and Food Security', 'Transportation']", 
     "Citations for methods used to produce the measure, <a href = '#citations'> see citations format</a>",
@@ -104,7 +104,7 @@ data.table(as.character(read_json("https://raw.githubusercontent.com/uva-bi-sdad
 
 ## measure_info sources description {#sources}
 ```{r eval = TRUE, echo = FALSE, include = TRUE, message = FALSE, warning = FALSE}
-data.table(as.character(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/src/data_repo_structure/source_structure.json"))) %>% 
+data.table(as.character(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/data/source_structure.json"))) %>% 
   cbind(c(
     "Year of data access, format YYYY", 
     "Specific data product, if available",
