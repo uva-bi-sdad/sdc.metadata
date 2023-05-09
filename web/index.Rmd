@@ -61,7 +61,7 @@ data.table(as.character(read_json("https://raw.githubusercontent.com/uva-bi-sdad
     "ID for the geography, see <a href = 'https://github.com/uva-bi-sdad/sdc.geographies'> sdc.geographies
     standards</a>", 
     "Human and machine readable ID, see <a href = '#measure'> see measure format</a>",
-    paste0("Type of the measure, one of [", measure_types, "]"),
+    #paste0("Type of the measure, one of [", measure_types, "]"),
     #"Name of the region mapped to geoid, see <a href = 'https://github.com/uva-bi-sdad/sdc.geographies'>
     #sdc.geographies standards</a>",
     #paste0("Geographic resolution of the measure, one of [", region_types, "]"),
