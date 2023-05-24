@@ -8,7 +8,7 @@ navbar:
       href: index.html
 #    - text: "For Users"
 #      href: external.html
-#    - text: "For Developers"
-#      href: internal.html
+    - text: "For Developers"
+      href: internal.html
     - text: "About this Project"
       href: uva-bi-sdad.github.io/sdc.intro/

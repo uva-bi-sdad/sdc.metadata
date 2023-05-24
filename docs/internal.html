@@ -245,6 +245,9 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
+  <a href="internal.html">For Developers</a>
+</li>
+<li>
   <a href="uva-bi-sdad.github.io/sdc.intro/">About this Project</a>
 </li>
       </ul>
@@ -264,8 +267,37 @@ $(document).ready(function () {
 </div>
 
 
-<div id="how-to-contribute-datasets" class="section level2">
-<h2>How to contribute datasets</h2>
+<div id="how-to-set-up-environmental-variables" class="section level2">
+<h2>How to set up environmental variables</h2>
+<p>In your home directory, create a file named “.Renviron”. Write the names of your secrets and their value, like this to this file</p>
+<pre class="bash"><code># Environmental variables can be in quotes or not in quotes #
+CENSUS_API_KEY=&quot;secret&quot;
+db_usr=&quot;secret&quot;
+db_pwd=&quot;secret&quot;
+DATAVERSE_KEY=&quot;secret&quot;
+DATAVERSE_SERVER=&quot;secret&quot;
+OSRM_SERVER=&quot;secret&quot;
+BEA_API_KEY=&quot;secret&quot;
+my_secret=&quot;secret&quot;</code></pre>
+<p>This file will execute in the terminal when your R session starts. To retrieve an environmental variable, execute this command in R</p>
+<pre class="r"><code>Sys.getenv(&quot;my_secret&quot;)</code></pre>
+<pre><code>## [1] &quot;secret&quot;</code></pre>
+<p>In action, you might use environmental variables like this</p>
+<pre class="r"><code>options(osrm.server = Sys.getenv(&quot;OSRM_SERVER&quot;))</code></pre>
+<p><a href="https://search.r-project.org/CRAN/refmans/tidycensus/html/census_api_key.html">You can also install your census API key through tidycensus</a></p>
+<pre class="r"><code>library(tidycensus)
+
+census_api_key(&quot;111111abc&quot;, install = TRUE, overwrite = TRUE)</code></pre>
+<pre><code>## Your original .Renviron will be backed up and stored in your R HOME directory if needed.</code></pre>
+<pre><code>## Your API key has been stored in your .Renviron and can be accessed by Sys.getenv(&quot;CENSUS_API_KEY&quot;). 
+## To use now, restart R or run `readRenviron(&quot;~/.Renviron&quot;)`</code></pre>
+<pre><code>## [1] &quot;111111abc&quot;</code></pre>
+<pre class="r"><code># First time, reload your environment so you can use the key without restarting R.
+readRenviron(&quot;~/.Renviron&quot;)
+# You can check it with:
+Sys.getenv(&quot;CENSUS_API_KEY&quot;)</code></pre>
+<pre><code>## [1] &quot;111111abc&quot;</code></pre>
+<p>Environmental variables are not only useful time savers, but they prevent us from commiting secrets to our public repositories!</p>
 </div>
 
 

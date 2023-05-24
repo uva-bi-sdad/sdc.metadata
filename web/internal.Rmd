@@ -3,4 +3,40 @@ title: "For Developers"
 output: html_document
 ---
 
-## How to contribute datasets
+## How to set up environmental variables
+
+In your home directory, create a file named ".Renviron". Write the names of your secrets and their value, like this to this file 
+```{bash}
+# Environmental variables can be in quotes or not in quotes #
+CENSUS_API_KEY="secret"
+db_usr="secret"
+db_pwd="secret"
+DATAVERSE_KEY="secret"
+DATAVERSE_SERVER="secret"
+OSRM_SERVER="secret"
+BEA_API_KEY="secret"
+my_secret="secret"
+```
+
+This file will execute in the terminal when your R session starts. To retrieve an environmental variable, execute this command in R
+```{r}
+Sys.getenv("my_secret")
+```
+
+In action, you might use environmental variables like this
+```{r}
+options(osrm.server = Sys.getenv("OSRM_SERVER"))
+```
+
+[You can also install your census API key through tidycensus](https://search.r-project.org/CRAN/refmans/tidycensus/html/census_api_key.html)
+```{r}
+library(tidycensus)
+
+census_api_key("111111abc", install = TRUE, overwrite = TRUE)
+# First time, reload your environment so you can use the key without restarting R.
+readRenviron("~/.Renviron")
+# You can check it with:
+Sys.getenv("CENSUS_API_KEY")
+```
+
+Environmental variables are not only useful time savers, but they prevent us from commiting secrets to our public repositories! 
