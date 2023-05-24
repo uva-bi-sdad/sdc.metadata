@@ -3,7 +3,7 @@ title: "For Developers"
 output: html_document
 ---
 
-## How to set up environmental variables
+## How to set up environmental variables {#environ_vars}
 
 In your home directory, create a file named ".Renviron". Write the names of your secrets and their value, like this to this file 
 ```{bash}
