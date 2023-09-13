@@ -1,4 +1,3 @@
-
 # connect to database function
 get_db_conn <-
   function(db_name = Sys.getenv("db_nam"),
