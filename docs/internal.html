@@ -13,6 +13,7 @@
 
 <title>For Developers</title>
 
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -31,6 +32,14 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.29/datatables.js"></script>
+<link href="site_libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -242,10 +251,13 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home</a>
+  <a href="index.html">Data Dictionary and Metadata</a>
 </li>
 <li>
   <a href="internal.html">For Developers</a>
+</li>
+<li>
+  <a href="abbreviations.html">Living List of Abbreviations</a>
 </li>
 <li>
   <a href="uva-bi-sdad.github.io/sdc.intro/">About this Project</a>
@@ -266,10 +278,234 @@ $(document).ready(function () {
 
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#github-materials" id="toc-github-materials">GitHub
+materials</a></li>
+<li><a href="#developer-workflow" id="toc-developer-workflow">Developer
+workflow</a></li>
+<li><a href="#standards" id="toc-standards">Standards</a>
+<ul>
+<li><a href="#repo-organization" id="toc-repo-organization">Repo
+organization</a></li>
+<li><a href="#cols" id="toc-cols">Column names</a></li>
+<li><a href="#table" id="toc-table">Table naming guidance</a></li>
+<li><a href="#measure" id="toc-measure">Measure naming guidance</a></li>
+</ul></li>
+<li><a href="#writing-measure_info"
+id="toc-writing-measure_info">Writing measure_info</a>
+<ul>
+<li><a href="#measure_info" id="toc-measure_info">Keys</a></li>
+<li><a href="#citations" id="toc-citations">Citations</a></li>
+<li><a href="#sources" id="toc-sources">Source</a></li>
+<li><a href="#statement" id="toc-statement">Statement</a></li>
+<li><a href="#layer" id="toc-layer">Layer</a></li>
+</ul></li>
+<li><a href="#environ_vars" id="toc-environ_vars">How to set up
+environmental variables</a></li>
+</ul>
+</div>
 
+<div id="github-materials" class="section level2">
+<h2>GitHub materials</h2>
+<p><img src="media/GitCheatSheet.jpg" alt="Git Cheat Sheet" /> <img
+src="media/BWPM.jpg" alt="Branch Write Push Merge" /></p>
+<ul>
+<li><a
+href="https://github.com/uva-bi-sdad/dspg23_explore/blob/main/docs/00_github_1.pdf">Intro
+to Git v.2023</a></li>
+<li><a
+href="https://github.com/uva-bi-sdad/sdc.metadata/blob/main/web/media/Intro%20to%20Git%202022.pdf">Intro
+to Git v.2022</a></li>
+<li><a
+href="https://github.com/uva-bi-sdad/sdc.metadata/blob/main/web/media/GitHub%20Issues.pdf">GitHub
+Issues</a></li>
+</ul>
+</div>
+<div id="developer-workflow" class="section level2">
+<h2>Developer workflow</h2>
+<div class="figure">
+<img src="media/developer_workflow.png" alt="" />
+<p class="caption">Developer Workflow</p>
+</div>
+</div>
+<div id="standards" class="section level2">
+<h2>Standards</h2>
+<div id="repo-organization" class="section level3">
+<h3>Repo organization</h3>
+<ul>
+<li>We have 11 data repositories, divided thematically by general data
+topics
+<ul>
+<li>sdc.broadband</li>
+<li>sdc.business_climate</li>
+<li>sdc.demographics</li>
+<li>sdc.education</li>
+<li>sdc.environment</li>
+<li>sdc.financial_well_being</li>
+<li>sdc.food</li>
+<li>sdc.health</li>
+<li>sdc.housing</li>
+<li>sdc.transportation</li>
+<li>sdc.public_safety</li>
+</ul></li>
+<li>Within a repository, data is organized in thematic topic
+folders</li>
+<li>Within a most specific top folder, we have (as necessary)
+<ul>
+<li>code
+<ul>
+<li>all code used to replicate a distribution dataset</li>
+<li>Use the following naming conventions
+<ul>
+<li><code>ingest</code> files contain steps to acquire the data, write
+to /original</li>
+<li><code>prepare</code> files contain data manipulation, write to
+/working or /distribution</li>
+</ul></li>
+</ul></li>
+<li>data
+<ul>
+<li>All original, intermediary, and final datasets in appropriate
+folders</li>
+<li>See dataset <a href = '#table'> table naming guidelines</a></li>
+</ul></li>
+<li>docs
+<ul>
+<li>Supporting documentation for data or methods (e.g. literature or
+technical reports)</li>
+</ul></li>
+</ul></li>
+<li>Within /code, /data, /docs, we have (as necessary)
+<ul>
+<li>original</li>
+<li>working</li>
+<li>distribution
+<ul>
+<li>/distribution datasets need to be compressed</li>
+<li>/distribution datasets need to follow the <a href = '#cols'> column
+names</a></li>
+<li>/distribution datasets need a <a href = '#measure_info'>
+measure_info file</a></li>
+</ul></li>
+</ul></li>
+<li><strong>All /distribution datasets need /distribution
+code</strong></li>
+</ul>
+</div>
+<div id="cols" class="section level3">
+<h3>Column names</h3>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-5dc1dd632fc4a6959535" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-5dc1dd632fc4a6959535">{"x":{"filter":"none","vertical":false,"data":[["geoid","measure","moe","value","year"],["ID for the geography","Human and machine readable ID for the measure","Margin of error for the measure","Value for the given measure, geoid, and year combination","The year of the measure"],["See <a href = 'https://github.com/uva-bi-sdad/sdc.geographies'> sdc.geographies \n     <\/a> for IDs","See <a href = '#measure'> measure guidance<\/a>","NA if unavailable","","YYYY"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Column name<\/th>\n      <th>Description<\/th>\n      <th>Allowed Values/Format<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":20,"columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,20,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="table" class="section level3">
+<h3>Table naming guidance</h3>
+<p>The naming convention for data tables is as follows:</p>
+<p><code>&lt;coverage_area&gt;_&lt;resolution&gt;_&lt;data source&gt;_&lt;time period&gt;_&lt;title&gt;</code></p>
+<p>For example, a table created from ACS 5 year data on health insurance
+could look as follows:
+<code>va_bg_acs5_2015_adults_health_insured_by_sex</code></p>
+<ul>
+<li>Abbreviation Standards
+<ul>
+<li>Coverage Area (2 characters for state/province or country; 3 fips
+characters for sub-state/province)
+<ul>
+<li>us, United States</li>
+<li>va, Virginia</li>
+<li>va013, Virginia, Arlington County<br />
+</li>
+</ul></li>
+<li>Resolutions (2 characters)
+<ul>
+<li>bl, census block</li>
+<li>bg, census block group</li>
+<li>tr, census tract</li>
+<li>nb, neighborhood</li>
+<li>ct, county</li>
+<li>hd, health district</li>
+<li>co, country</li>
+<li>pl, place locations</li>
+<li>pr, person data</li>
+<li>bz, business data</li>
+</ul></li>
+<li>Data Sources (up to 5 characters; this list will continually grow)
+<ul>
+<li>acs5, American Community Survey 5-Year Data<br />
+</li>
+<li>lodes, LEHD Origin-Destination Employment Statistics</li>
+<li>pseo, Post-Secondary Employment Outcomes</li>
+<li>qwi, Quarterly Workforce Indicators</li>
+<li>mcig, Mastercard Inclusive Growth Score</li>
+<li>hifld, Homeland Infrastructure Foundation-Level Data</li>
+<li>ookla, OOKLA for Good</li>
+<li>webmd, Web MD</li>
+<li>sdad, (items that we have calculated)</li>
+<li>abc, census address block counts</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="measure" class="section level3">
+<h3>Measure naming guidance</h3>
+<ul>
+<li>Measures should be named to balance human and
+machine-readability.</li>
+<li><strong>Generally</strong>, the format for measures should be
+<code>topic_method</code>.</li>
+<li>Underscores should be used to separate words in a measure.</li>
+<li>Measures should be renamed to SDC style guidelines after we have
+manipulated them.</li>
+<li>The living list of abbreviations is UNDER CONSTRUCTION.</li>
+</ul>
+</div>
+</div>
+<div id="writing-measure_info" class="section level2">
+<h2>Writing measure_info</h2>
+<ul>
+<li>When writing measure_info, I would suggest starting with a copy of
+an exemplar measure_info or a closely related measure_info
+(e.g. describing data from the same source).</li>
+<li>You can edit measure_info from RStudio, you’re preferred code
+editor, or the GitHub GUI (really where ever you like)</li>
+<li>It is important to avoid syntactical mistakes in your measure_info
+<ul>
+<li>Use an editor that is smart for json syntax</li>
+<li>Use a json linter library
+(e.g. <code>jsonlite::validate()</code>)</li>
+<li>Use an <a href="https://jsonlint.com/">online json linter</a></li>
+</ul></li>
+</ul>
+<div id="measure_info" class="section level3">
+<h3>Keys</h3>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ae9dfc0eb89662db6f93" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ae9dfc0eb89662db6f93">{"x":{"filter":"none","vertical":false,"data":[["aggregation_method","category","citations","data_type","equity_category","layer","long_description","long_name","measure_type","short_description","short_name","sources","statement","type","unit","categories","variants"],["","Thematic category or categories for the measure","Citations for methods used to produce the measure","Type of the data, automatically inferred","Describes how the measure relates to equity","Related shapefile of points to be displayed with the measure","Long account of the production of the measure (no character limit). Should include detail on methods, multiple data sources, the way things were combined, decisions made to create the measure.","Human readable long name for the measure (55 char limit)","Type of the measure","Short account of the production of the measure (100 char limit)","Human readable short name for the measure (40 char limit)","Data source from which the measure is derived","Dynamic statement to describe the value of the data for a given geoid and year combination","----","Units associated with the measure, how to interpret","",""],["arithmetic mean percent, count, arithmetic mean, median, percent, ratio","Environment, Business climate, Nutrition and Food Security, NA, Health Opportunity Index, Education, Health, Housing, Demographics, Financial Well Being, Nutrition and Food Security', Broadband, Behavioral Health, Substance Use Disorder and Recovery, Transportation, Employment/Workforce Development, Agriculture Industry, ","<a href = '#citations'> See citations format<\/a>","character, integer, decimal, geography","Status, Accessibility, Availability, or Affordability","<a href = '#layer'> See layer format<\/a>","","","percent, count, index, cost, date time, speed","","","<a href = '#sources'> See sources format<\/a>","<a href = '#statement'> See statement format<\/a>","----","business, individual, household","",""],["<a href = 'https://ddialliance.org/controlled-vocabularies'>DDI AggregationMethod<\/a>","","<a href = 'https://www.bibtex.com/g/bibtex-format/'>BibTeX<\/a>","<a href = 'https://www.w3.org/TR/xmlschema-2/'>W3C Datatype/DDI DataType<\/a>","","","","","","","","","","","<a href = 'https://ddialliance.org/Specification/DDI-CV/AnalysisUnit_1.0.html'>DDI Analysis Unit<\/a>","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Key<\/th>\n      <th>Description<\/th>\n      <th>Allowed Values/Format<\/th>\n      <th>Derived From<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":20,"columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,20,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="citations" class="section level3">
+<h3>Citations</h3>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-08158a59bf1daa7cca54" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-08158a59bf1daa7cca54">{"x":{"filter":"none","vertical":false,"data":[["id","author","year","title","journal","volume","page","doi","version","url"],["The reference id, same as the citation entry name","A list or list of lists specifying one or more authors. These can include entries for given and family names","Year of the publication","Title of the publication","Journal in which the publication appears","Volume number of the journal","Page number of the journal","Digital Object Identifier, from which a link is made (https://doi.org/{doi})","Version number of software","Link to the publication, alternative to a DOI"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Key<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":20,"columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,20,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="sources" class="section level3">
+<h3>Source</h3>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-e1855fa2593e85785001" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e1855fa2593e85785001">{"x":{"filter":"none","vertical":false,"data":[["date_accessed","location","name","url"],["Year of data access","Specific data product, if available","Name of data provider/organization","Location of a specific dataset description page or a general page for the data provider"],["YYYY","","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Key<\/th>\n      <th>Description<\/th>\n      <th>Allowed Values/Format<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":20,"columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,20,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="statement" class="section level3">
+<h3>Statement</h3>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a65c414021f49cd0e091" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-a65c414021f49cd0e091">{"x":{"filter":"none","vertical":false,"data":[["region_name OR features.name","value"],["Placeholder for the active region","Placeholder for the given value"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Dynamic Reference<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":20,"columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,20,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="layer" class="section level3">
+<h3>Layer</h3>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-2f14bdea6ea98e446167" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2f14bdea6ea98e446167">{"x":{"filter":"none","vertical":false,"data":[["source","filter"],["Url to a geojson file (Note: Must point to a public repo (e.g. Not _dev))","optional"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Key<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":20,"columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,20,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
 <div id="environ_vars" class="section level2">
 <h2>How to set up environmental variables</h2>
-<p>In your home directory, create a file named “.Renviron”. Write the names of your secrets and their value, like this to this file</p>
+<p>In your home directory, create a file named “.Renviron”. Write the
+names of your secrets and their value, like this to this file</p>
 <pre class="bash"><code># Environmental variables can be in quotes or not in quotes #
 CENSUS_API_KEY=&quot;secret&quot;
 db_usr=&quot;secret&quot;
@@ -279,12 +515,15 @@ DATAVERSE_SERVER=&quot;secret&quot;
 OSRM_SERVER=&quot;secret&quot;
 BEA_API_KEY=&quot;secret&quot;
 my_secret=&quot;secret&quot;</code></pre>
-<p>This file will execute in the terminal when your R session starts. To retrieve an environmental variable, execute this command in R</p>
+<p>This file will execute in the terminal when your R session starts. To
+retrieve an environmental variable, execute this command in R</p>
 <pre class="r"><code>Sys.getenv(&quot;my_secret&quot;)</code></pre>
-<pre><code>## [1] &quot;secret&quot;</code></pre>
+<pre><code>## [1] &quot;&quot;</code></pre>
 <p>In action, you might use environmental variables like this</p>
 <pre class="r"><code>options(osrm.server = Sys.getenv(&quot;OSRM_SERVER&quot;))</code></pre>
-<p><a href="https://search.r-project.org/CRAN/refmans/tidycensus/html/census_api_key.html">You can also install your census API key through tidycensus</a></p>
+<p><a
+href="https://search.r-project.org/CRAN/refmans/tidycensus/html/census_api_key.html">You
+can also install your census API key through tidycensus</a></p>
 <pre class="r"><code>library(tidycensus)
 
 census_api_key(&quot;111111abc&quot;, install = TRUE, overwrite = TRUE)</code></pre>
@@ -297,7 +536,8 @@ readRenviron(&quot;~/.Renviron&quot;)
 # You can check it with:
 Sys.getenv(&quot;CENSUS_API_KEY&quot;)</code></pre>
 <pre><code>## [1] &quot;111111abc&quot;</code></pre>
-<p>Environmental variables are not only useful time savers, but they prevent us from commiting secrets to our public repositories!</p>
+<p>Environmental variables are not only useful time savers, but they
+prevent us from commiting secrets to our public repositories!</p>
 </div>
 
 

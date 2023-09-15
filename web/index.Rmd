@@ -1,6 +1,8 @@
 ---
 title: "Social Data Commons Data Dictionary"
-output: html_document
+output: 
+  html_document:
+    toc: true
 ---
 
 ```{r setup, echo = FALSE, include = FALSE, eval = TRUE}
@@ -26,7 +28,7 @@ rbindlist.v2 <- function(l)
 }
 ```
 
-## Search all measures
+## Search available measures
 
 ```{r search_measures, eval = TRUE, echo = FALSE, include = TRUE, message = FALSE, warning = FALSE}
 # Load data from measure_info_all
@@ -53,7 +55,9 @@ list %>% datatable(rownames = FALSE)
 
 ```
 
-## Dataset column descriptions {#columns}
+## Dataset metadata
+
+### Column names {#columns}
 ```{r column_descriptions, eval = TRUE, echo = FALSE, include = TRUE, message = FALSE, warning = FALSE}
 region_types <- unlist(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/data/region_types.json")) %>% paste0(., collapse = ", ")
 measure_types <- unlist(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/data/measure_types.json")) %>% paste0(., collapse = ", ")
@@ -74,9 +78,9 @@ data.table(as.character(read_json("https://raw.githubusercontent.com/uva-bi-sdad
             options = list("pageLength" = 20),
             escape=FALSE, rownames = FALSE)
 ```
+## measure_info metadata
 
-
-## measure_info key descriptions {#measure_info}
+### Keys {#measure_info}
 ```{r measure_info_key_descriptions, eval = TRUE, echo = FALSE, include = TRUE, message = FALSE, warning = FALSE}
 data_types <-  unlist(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/data/data_types.json")) %>% paste0(., collapse = ", ")
 units <-  unlist(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/data/units.json")) %>% paste0(., collapse = ", ")
@@ -101,52 +105,14 @@ data.table(as.character(read_json("https://raw.githubusercontent.com/uva-bi-sdad
     "Units associated with the measure, how to interpret",
     "",
     "")) %>% 
-   cbind(c(
-    paste0(aggregation_methods),
-    paste0(categories), 
-    "<a href = '#citations'> See citations format</a>",
-    paste0(data_types),
-    paste0('Status, Accessibility, Availability, or Affordability'),
-    "<a href = '#layer'> See layer format</a>",
-    "",
-    "",
-    paste0(measure_types),
-    "",
-    "",
-    "<a href = '#sources'> See sources format</a>",
-    "<a href = '#statement'> See statement format</a>",
-    "----",
-    paste0(units),
-    "",
-    "")) %>%
-    cbind(c(
-    "<a href = 'https://ddialliance.org/controlled-vocabularies'>DDI AggregationMethod</a>",
-    "", 
-    "<a href = 'https://www.bibtex.com/g/bibtex-format/'>BibTeX</a>",
-    "<a href = 'https://www.w3.org/TR/xmlschema-2/'>W3C Datatype/DDI DataType</a>",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "<a href = 'https://ddialliance.org/Specification/DDI-CV/AnalysisUnit_1.0.html'>DDI Analysis Unit</a>",
-    "",
-    "")) %>%
-  datatable(colnames = c("measure_info key", "Description", "Allowed Values/Format", "Derived From"), 
+  datatable(colnames = c("measure_info key", "Description"), 
             options = list("pageLength" = 20),
             escape=FALSE, rownames = FALSE)
 ```
-## measure guidance {#measure}
-Measures should be named to balance human and machine-readability. *Generally*, the format for measures should be <code> topic_method </code>. Underscores should be used to separate words in a measure. Measures should be renamed to SDC style guidelines after we have manipulated them. The living list of abbreviations can be found here.  
 
-## measure_info citations description {#citations}
+### Citations {#citations}
 
-## measure_info sources description {#sources}
+### Sources {#sources}
 ```{r eval = TRUE, echo = FALSE, include = TRUE, message = FALSE, warning = FALSE}
 data.table(as.character(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/data/source_structure.json"))) %>% 
   cbind(c(
@@ -159,7 +125,7 @@ data.table(as.character(read_json("https://raw.githubusercontent.com/uva-bi-sdad
             escape=FALSE, rownames = FALSE)
 ```
 
-## measure_info statement description {#statement}
+### Statement {#statement}
 ```{r eval = TRUE, echo = FALSE, include = TRUE, message = FALSE, warning = FALSE}
 data.table(c("features.name", "value"),
   cbind(c(
@@ -170,7 +136,7 @@ data.table(c("features.name", "value"),
             escape=FALSE, rownames = FALSE)
 ```
 
-## measure_info layer description {#layer}
+### Layer {#layer}
 ```{r eval = TRUE, echo = FALSE, include = TRUE, message = FALSE, warning = FALSE}
 data.table(c("source", "filter"),
   cbind(c(
@@ -180,5 +146,3 @@ data.table(c("source", "filter"),
             options = list("pageLength" = 20),
             escape=FALSE, rownames = FALSE)
 ```
-
-## Table naming guidance
