@@ -111,12 +111,39 @@ data.table(as.character(read_json("https://raw.githubusercontent.com/uva-bi-sdad
 ```
 
 ### Citations {#citations}
+```{r eval = TRUE, echo = FALSE, include = TRUE, message = FALSE, warning = FALSE}
+data.table(c("id",
+             "author",
+             "year",
+             "title",
+             "journal",
+             "volume",
+             "page",
+             "doi",
+             "version",
+             "url")) %>%
+            cbind(c(
+              "The reference id, same as the citation entry name",
+              "A list or list of lists specifying one or more authors. These can include entries for given and family names",
+              "Year of the publication",
+              "Title of the publication",
+              "Journal in which the publication appears",
+              "Volume number of the journal",
+              "Page number of the journal",
+              "Digital Object Identifier, from which a link is made (https://doi.org/{doi})",
+              "Version number of software",
+              "Link to the publication, alternative to a DOI"
+            )) %>% 
+  datatable(colnames = c("Key", "Description"), 
+            options = list("pageLength" = 20),
+            escape=FALSE, rownames = FALSE)
+```
 
 ### Sources {#sources}
 ```{r eval = TRUE, echo = FALSE, include = TRUE, message = FALSE, warning = FALSE}
 data.table(as.character(read_json("https://raw.githubusercontent.com/uva-bi-sdad/sdc.metadata/master/data/source_structure.json"))) %>% 
   cbind(c(
-    "Year of data access, format YYYY", 
+    "Year of data access", 
     "Specific data product, if available",
     "Name of the provider of the data organization",
     "URL location of the provider general description or more specific data set descriptive page")) %>% 
