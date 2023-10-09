@@ -1,7 +1,1 @@
-[
-  "geoid",
-  "year",
-  "measure",
-  "value",
-  "moe"
-]
+["geoid", "year", "measure", "value", "moe"]
