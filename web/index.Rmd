@@ -53,6 +53,8 @@ categories <- unique(list$category) %>% paste0(., collapse = ", ")
 
 list %>% datatable(rownames = FALSE)
 
+# NAICS11_Herfindalh_Hirschman_index example
+
 ```
 
 ## Dataset metadata
